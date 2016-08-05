@@ -9,6 +9,14 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      socket.on('news', function (data) {
+        console.log(data);
+        socket.emit('my other event', { my: 'data' });
+      });
+    </script>
   </head>
 
   <body>

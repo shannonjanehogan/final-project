@@ -8,11 +8,19 @@ const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const app         = express();
+const server      = require('http').Server(app);
+const io          = require("socket.io")(server);
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
+
+const util = require('util');
+function inspect(o, d)
+{
+  console.log(util.inspect(o, { colors: true, depth: d || 1}));
+}
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -43,6 +51,26 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.listen(PORT, () => {
+app.get("/ping", (req, res) => {
+  io.emit("news", "Cool beans");
+  res.end('OK');
+});
+
+app.get("/list", (req, res) => {
+  res.end(JSON.stringify(Object.keys(io.sockets.sockets)));
+});
+
+server.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
+});
+
+io.on('connection', (client) => {
+
+  console.log(`Client ${client.id} has connected`);
+  client.emit('news', "Hello")
+  // client.on('media-capabilities', (data) => {
+
+  // })
+
+  // client.on('video-start', (cb) => ...)
 });
