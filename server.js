@@ -10,17 +10,29 @@ const sass        = require("node-sass-middleware");
 const app         = express();
 const server      = require('http').Server(app);
 const io          = require("socket.io")(server);
+const util        = require('util');
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
+const webpack     = require('webpack');
+const config      = require('./webpack.config');
+const WebpackDevServer = require('webpack-dev-server');
 
-const util = require('util');
-function inspect(o, d)
-{
+function inspect(o, d) {
   console.log(util.inspect(o, { colors: true, depth: d || 1}));
 }
+
+new WebpackDevServer(webpack(config), {
+    publicPath: config.output.publicPath
+  })
+  .listen(PORT, '0.0.0.0', function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    console.log(`Running at http://localhost:${PORT}`);
+  });
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -51,26 +63,26 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/ping", (req, res) => {
-  io.emit("news", "Cool beans");
-  res.end('OK');
-});
+// app.get("/ping", (req, res) => {
+//   io.emit("news", "Cool beans");
+//   res.end('OK');
+// });
 
-app.get("/list", (req, res) => {
-  res.end(JSON.stringify(Object.keys(io.sockets.sockets)));
-});
+// app.get("/list", (req, res) => {
+//   res.end(JSON.stringify(Object.keys(io.sockets.sockets)));
+// });
 
-server.listen(PORT, () => {
-  console.log("Example app listening on port " + PORT);
-});
+// server.listen(PORT, () => {
+//   console.log("Example app listening on port " + PORT);
+// });
 
-io.on('connection', (client) => {
+// io.on('connection', (client) => {
 
-  console.log(`Client ${client.id} has connected`);
-  client.emit('news', "Hello")
-  // client.on('media-capabilities', (data) => {
+//   console.log(`Client ${client.id} has connected`);
+//   client.emit('news', "Hello")
+//   // client.on('media-capabilities', (data) => {
 
-  // })
+//   // })
 
-  // client.on('video-start', (cb) => ...)
-});
+//   // client.on('video-start', (cb) => ...)
+// });
