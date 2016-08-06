@@ -1,0 +1,19 @@
+Login Page with "What's your email"
+
+
+<body>
+  <nav id="nav-bar">
+    <span class="logo">LOGO</span>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <h2 class="center questions">Hi! What's your email?</h2>
+    </div>
+    <div class="row">
+      <form>
+        <input class="center input" type="email" placeholder="Type your email here.">
+        <input class="center button-primary" type="submit" value="Submit">
+      </form>
+    </div>
+  </div>
+</body>
