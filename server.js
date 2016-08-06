@@ -8,15 +8,18 @@ const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const app         = express();
+// const ecstatic    = require('ecstatic');
 const server      = require('http').Server(app);
 const io          = require("socket.io")(server);
+// var p2p           = require('socket.io-p2p-server').Server;
+// io.use(p2p);
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
-const util = require('util');
+const util        = require('util');
 function inspect(o, d)
 {
   console.log(util.inspect(o, { colors: true, depth: d || 1}));
@@ -65,12 +68,33 @@ server.listen(PORT, () => {
 });
 
 io.on('connection', (client) => {
+  // clients[socket.id] = socket;
+  // socket.join(roomName);
+  // p2p(socket, null, room);
 
   console.log(`Client ${client.id} has connected`);
-  client.emit('news', "Hello")
-  // client.on('media-capabilities', (data) => {
 
+  // socket.on('peer-msg', function (data) {
+  //   console.log('Message from peer: %s', data)
+  //   socket.broadcast.emit('peer-msg', data)
   // })
 
+  // socket.on('peer-file', function (data) {
+  //   console.log('File from peer: %s', data)
+  //   socket.broadcast.emit('peer-file', data)
+  // })
+
+  // socket.on('go-private', function (data) {
+  //   socket.broadcast.emit('go-private', data)
+  // })
+
+
+  client.emit('news', "Hello")
+  client.on('media-capabilities', (data) => {
+
+  })
+
   // client.on('video-start', (cb) => ...)
+
+  client.on('disconnect', () => {});
 });
