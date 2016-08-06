@@ -1,39 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <title>Home Page</title>
-
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/skeleton.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,900' rel='stylesheet' type='text/css'>
-
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      var socket = io();
-      socket.on('news', function (data) {
-        console.log(data);
-        socket.emit('my other event', { my: 'data' });
-      });
-    </script>
-  </head>
-
-  <body>
-    <nav id="nav-bar">
-      <span class="logo">LOGO</span>
-    </nav>
-
-    <div class="video-panel">
-      <video id="webcam"></video>
-    </div>
-
-    <div class="photo-panel">
-      TEST TEST TEST
-    </div>
-
-  </body>
+<head>
+  <link rel="stylesheet" href="/styles/home.scss" type="text/css" />
+    <meta charset="UTF-8">
+    <title>Company Name</title>
+</head>
+<body>
+  <div id="react-root"></div>
+  <script src="/build/bundle.js"></script>
+</body>
 </html>
