@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-const LoginName = React.createClass ({
+const LoginQuestion = React.createClass ({
 
   getInitialState: function() {
     return {
@@ -50,4 +50,4 @@ const LoginName = React.createClass ({
   }
 });
 
-export default LoginName;
+export default LoginQuestion;
