@@ -1,8 +1,8 @@
-const PORT        = 4000;
-
 const webpack     = require('webpack');
 const config      = require('./webpack.config');
 const WebpackDevServer = require('webpack-dev-server');
+
+const PORT        = 4000;
 
 function inspect(o, d) {
   console.log(util.inspect(o, { colors: true, depth: d || 1}));
@@ -15,5 +15,5 @@ new WebpackDevServer(webpack(config), {
     if (err) {
       console.log(err);
     }
-    console.log("Final Project listening on port " + PORT));
+    console.log("Final Project listening on port " + PORT);
   });
