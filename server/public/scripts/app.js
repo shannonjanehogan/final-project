@@ -1,13 +1,4 @@
-$(() => {
-  $.ajax({
-    method: "GET",
-    url: "/api/users"
-  }).done((users) => {
-    for(user of users) {
-      // $("<div>").text(user.name).appendTo($("body"));
-    }
-  });;
-});
+
 
 
 navigator.getUserMedia ||
@@ -25,6 +16,7 @@ if (navigator.getUserMedia) {
 
 function onSuccess(stream) {
   var video = document.getElementById('webcam');
+  if (!video) return;
   var videoSource;
   if (window.webkitURL) {
     videoSource = window.webkitURL.createObjectURL(stream);

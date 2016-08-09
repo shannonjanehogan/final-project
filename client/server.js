@@ -15,5 +15,5 @@ new WebpackDevServer(webpack(config), {
     if (err) {
       console.log(err);
     }
-    console.log("Final Project listening on port " + PORT));
+    console.log("Final Project listening on port " + PORT);
   });
