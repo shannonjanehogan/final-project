@@ -30,7 +30,6 @@ const Login = React.createClass ({
             onQuestionLogin={this.handleQuestionLogin}
             onLoggedIn={this.handleSuccessfulLogin}/>
       </div>
-
     );
   }
 });

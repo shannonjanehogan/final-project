@@ -25,7 +25,6 @@ const Signup = React.createClass ({
   handleQuestionSubmit: function (question, answer) {
     this.setState({user: {question: question, answer: answer});
   },
-
   render() {
     console.log("Rendering <Signup/>");
     return (
