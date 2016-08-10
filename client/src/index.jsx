@@ -5,7 +5,7 @@ require("../styles/layout.scss");
 import React from 'react';
 import { render } from 'react-dom';
 // import ReactDOM from 'react-dom';
-// import App from './App.jsx';
+import App from './App.jsx';
 // import VideoPanel from './VideoPanel.jsx';
 // import PhotoPanel from './PhotoPanel.jsx';
 // import Photo from './Photo.jsx';
@@ -22,6 +22,7 @@ import { Router, Route, Link, browserHistory } from 'react-router';
 render((
   <Router history={browserHistory}>
     <Route>
+    <Route path="/" component={App}>
       <Route path="/signup" component={Signup}>
         <Route path="signup/name" component={SignupName} />
           <Route path="signup/name" component={NewNamePost}/>

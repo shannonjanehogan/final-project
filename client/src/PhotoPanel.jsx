@@ -7,13 +7,13 @@ const PhotoPanel = React.createClass({
     return (
       <div class="photo-panel">
         <div class="sidebar-image-gallery">
-          <img src="http://placekitten.com/300/300" width="206" height="206" alt="">
-          <img src="http://placekitten.com/300/300" width="206" height="206" alt="">
-          <img src="http://placekitten.com/300/300" width="206" height="206" alt="">
-          <img src="http://placekitten.com/300/300" width="206" height="206" alt="">
-          <img src="http://placekitten.com/300/300" width="206" height="206" alt="">
-          <img src="http://placekitten.com/300/300" width="206" height="206" alt="">
-          <img src="http://placekitten.com/300/300" width="206" height="206" alt="">
+          <img src="http://placekitten.com/300/300" width="206" height="206" alt=""/>
+          <img src="http://placekitten.com/300/300" width="206" height="206" alt=""/>
+          <img src="http://placekitten.com/300/300" width="206" height="206" alt=""/>
+          <img src="http://placekitten.com/300/300" width="206" height="206" alt=""/>
+          <img src="http://placekitten.com/300/300" width="206" height="206" alt=""/>
+          <img src="http://placekitten.com/300/300" width="206" height="206" alt=""/>
+          <img src="http://placekitten.com/300/300" width="206" height="206" alt=""/>
         </div>
       </div>
     );
