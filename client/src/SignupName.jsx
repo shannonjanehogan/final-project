@@ -26,27 +26,30 @@ const SignupName = React.createClass ({
 
   render: function() {
     return (
-      <div class="container">
-      <div class="row">
-        <h2 class="center questions">Hi! What's your email?</h2>
+      <div>
+        <nav id="nav-bar">
+          <span class="logo">LOGO</span>
+        </nav>
+        <div>
+          <h2 class="center questions">Hi! What's your name?</h2>
+          <form>
+            <input
+              class="center input"
+              type="name"
+              placeholder="Type your name here."
+              onKeyPress={(event)=>this._onSubmit(event.charCode)}
+              onBlur={this._onEmailBlur}
+              value={this.state.new_email}
+              onChange={this._onChange}
+            >
+            <input class="center button-primary" type="submit" value="Submit">
+          </form>
+        </div>
+
       </div>
-      <div class="row">
-        <form>
-          <input
-            type="email"
-            className="center-input"
-            placeholder="Type your email here."
-            onKeyPress={(event)=>this._onSubmit(event.charCode)}
-            onBlur={this._onEmailBlur}
-            value={this.state.new_email}
-            onChange={this._onChange}/>
-          <input
-            className="center-button-primary"
-            type="submit"
-            value="Submit"/>
-        </form>
-      </div>
-      </div>
+
+
+
     );
   }
 });
