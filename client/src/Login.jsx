@@ -9,7 +9,6 @@ const Login = React.createClass ({
       <LoginEmail/>
       <LoginQuestion/>
       </div>
-
     );
   }
 });
