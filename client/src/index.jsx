@@ -21,12 +21,10 @@ import { Router, Route, Link, browserHistory } from 'react-router';
 
 render((
   <Router history={browserHistory}>
+  <Route path="/" component={App}/>
     <Route>
-    <Route path="/" component={App}>
       <Route path="/signup" component={Signup}>
         <Route path="signup/name" component={SignupName} />
-          <Route path="signup/name" component={NewNamePost}/>
-          <Route path="signup/name" onSubmit={handleAddPost}/>
         <Route path="signup/email" component={SignupEmail} />
         <Route path="signup/question" component={SignupQuestion} />
       </Route>
