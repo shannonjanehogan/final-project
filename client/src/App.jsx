@@ -13,9 +13,11 @@ const App = React.createClass ({
     console.log("Rendering <App/>");
     return (
       <div>
-      <nav id="nav-bar"><span className="logo">LOGO</span></nav>
-      <VideoPanel/>
-      <PhotoPanel photos={data.photos}/>
+        <nav id="nav-bar">
+          <span class="logo">LOGO</span>
+        </nav>
+        <VideoPanel/>
+        <PhotoPanel photos={data.photos}/>
       </div>
 
       );
@@ -23,3 +25,9 @@ const App = React.createClass ({
 });
 
 export default App;
+
+
+
+
+
+

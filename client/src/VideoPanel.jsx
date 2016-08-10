@@ -4,7 +4,7 @@ const VideoPanel = React.createClass({
   render() {
     console.log("Rendering <VideoPanel/>");
     return (
-      <div className="video-panel">
+      <div class="video-panel">
         <video id="webcam"></video>
       </div>
     );
