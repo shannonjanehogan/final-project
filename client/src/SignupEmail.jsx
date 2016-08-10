@@ -1,52 +1,36 @@
 import React, {Component} from 'react';
-import App from './App.jsx';
+import Signup from './Signup.jsx';
 
 const SignupEmail = React.createClass ({
 
-  getInitialState: function() {
-    return {
-      new_email: ""
-    };
-  },
-
-  _onChange: function(event) {
-    this.setState({new_email: event.target.value});
-  },
-
-  _onEmailBlur: function(event) {
-    this.props.onNewEmail(this.state.new_email);
-  },
-
-  _onSubmit: function(charCode) {
-    console.log(charCode);
-    if(charCode === 13) {
-      this.props.onNewMessage(this.state.new_email);
+  onEmailSubmit: function (e) {
+    e.preventDefault();
+    var email = this.refs.email.value.trim();
+    if (!email) {
+      return;
     }
+    this.props.onEmailSubmit(email);
+    this.refs.email.value = '';
+    return;
   },
 
   render: function() {
     return (
-      <div class="container">
-      <div class="row">
-        <h2 class="center questions">Hi! What's your email?</h2>
-      </div>
-      <div class="row">
-        <form>
-          <input
-            type="email"
-            className="center-input"
-            placeholder="Type your email here."
-            onKeyPress={(event)=>this._onSubmit(event.charCode)}
-            onBlur={this._onEmailBlur}
-            value={this.state.new_email}
-            onChange={this._onChange}/>
-          <input
-            className="center-button-primary"
-            type="submit"
-            value="Submit"/>
-        </form>
-      </div>
-      </div>
+      <div className="clearfix">
+          <form className="todoForm form-horizontal" onEmailSubmit={this.onEmailSubmit}>
+            <div className="form-group">
+              <label htmlFor="task" className="col-md-2 control-label">Please enter your email:</label>
+              <div className="col-md-10">
+                <input type="text" id="email" ref="email" className="form-control" placeholder="What's your email?" />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-10 col-md-offset-2 text-right">
+                <input type="submit" value="Save Item" className="btn btn-primary" />
+              </div>
+            </div>
+          </form>
+        </div>
     );
   }
 });
