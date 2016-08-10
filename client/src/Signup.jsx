@@ -17,19 +17,19 @@ const Signup = React.createClass ({
     };
   },
   handleNameSubmit: function (name) {
-    this.setState({user: {name: name});
+    this.setState({user: {name: name}});
   },
   handleEmailSubmit: function (email) {
-    this.setState({user: {email: email});
+    this.setState({user: {email: email}});
   },
   handleQuestionSubmit: function (question, answer) {
-    this.setState({user: {question: question, answer: answer});
+    this.setState({user: {question: question, answer: answer}});
   },
   render() {
     console.log("Rendering <Signup/>");
     return (
-      <Nav/>
       <div className="signup-body">
+      <Nav/>
       <SignupName name={this.state.name} onNameSubmit={this.handleNameSubmit}/>
       <SignupEmail email={this.state.email} onEmailSubmit={this.handleEmailSubmit}/>
       <SignupQuestion

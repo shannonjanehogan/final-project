@@ -23,17 +23,13 @@ render((
   <Router history={browserHistory}>
     <Route>
       <Route path="/signup" component={Signup}>
-        <Route path="signup/name" component={SignupName} />
-          <Route path="signup/name" component={NewNamePost}/>
-          <Route path="signup/name" onSubmit={handleAddPost}/>
-        <Route path="signup/email" component={SignupEmail} />
-        <Route path="signup/question" component={SignupQuestion} />
+        <Route path="/signup/name" component={SignupName} />
+        <Route path="/signup/email" component={SignupEmail} />
+        <Route path="/signup/question" component={SignupQuestion} />
       </Route>
-    </Route>
-      {/*
       <Route path="/login" component={Login}>
-        <Route path="login/email" component={LoginEmail} />
-        <Route path="login/question" component={LoginQuestion} />
+        <Route path="/login/email" component={LoginEmail} />
+        <Route path="/login/question" component={LoginQuestion} />
       </Route>
       <Route path="/user/:user_id/video" component={App}>
         <Route path="/user/:user_id/video/" component={App}/>
@@ -41,7 +37,6 @@ render((
         <Route path="/user/:user_id/video" component={App}/>
       </Route>
     </Route>
-    */}
   </Router>
  ),document.getElementById('react-root'));
 
