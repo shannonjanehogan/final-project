@@ -26,7 +26,6 @@ const LoginQuestion = React.createClass ({
 
   render: function() {
     return (
-<<<<<<< HEAD
       <div className="clearfix">
         <h4> Here is your security question: {this.props.user.answer}</h4>
           <form className="todoForm form-horizontal" onAnswerLogin={this.onAnswerLogin} onLoggedin{this.onLoggedin}>
@@ -43,29 +42,6 @@ const LoginQuestion = React.createClass ({
             </div>
           </form>
         </div>
-=======
-      <div>
-        <nav id="nav-bar">
-          <span class="logo">LOGO</span>
-        </nav>
-        <div>
-          <h2 class="center questions"> Brand of your first car?</h2>
-          <form>
-            <input
-              class="center input"
-              type="answer"
-              placeholder="Type your answer here."
-              onKeyPress={(event)=>this._onSubmit(event.charCode)}
-              onBlur={this._onNameBlur}
-              value={this.state.new_name}
-              onChange={this._onChange}
-            >
-            <input class="center button-login-submit button-primary" type="submit" value="Submit">
-          </form>
-        </div>
-      </div>
-
->>>>>>> c822859c621a27786a50eee5015ccb7d85e28938
     );
   }
 });
