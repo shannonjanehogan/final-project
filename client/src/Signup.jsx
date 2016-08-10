@@ -7,30 +7,23 @@ import Nav from './Nav.jsx';
 const Signup = React.createClass ({
   getInitialState: function () {
     return {
-      users: {},
-      name: '',
-      email: '',
-      question: '',
-      answer: '',
-
+      user: {
+        name: '',
+        email: '',
+        question: '',
+        answer: '',
+      },
+      isLoggedIn: false
     };
   },
   handleNameSubmit: function (name) {
-    var name = this.state.name;
-    user[name] = name;
-    this.setState({name});
+    this.setState({user: {name: name});
   },
   handleEmailSubmit: function (email) {
-    var email = this.state.email;
-    user[email] = email;
-    this.setState({email});
+    this.setState({user: {email: email});
   },
   handleQuestionSubmit: function (question, answer) {
-    var question = this.state.question;
-    var answer = this.state.answer;
-    user[question] = question;
-    user[answer] = answer;
-    this.setState({question, answer});
+    this.setState({user: {question: question, answer: answer});
   },
 
   render() {
@@ -40,7 +33,10 @@ const Signup = React.createClass ({
       <div className="signup-body">
       <SignupName name={this.state.name} onNameSubmit={this.handleNameSubmit}/>
       <SignupEmail email={this.state.email} onEmailSubmit={this.handleEmailSubmit}/>
-      <SignupQuestion question={this.state.question} answer={this.state.answer} onAnswerSubmit={this.handleQuestionSubmit}/>
+      <SignupQuestion
+          question={this.state.question}
+          answer={this.state.answer}
+          onAnswerSubmit={this.handleQuestionSubmit}/>
       </div>
     );
   }
