@@ -4,6 +4,7 @@ require("../styles/layout.scss");
 // Render the top-level React component
 import React from 'react';
 import { render } from 'react-dom';
+import DropzoneComponent from 'react-dropzone';
 // import ReactDOM from 'react-dom';
 import App from './App.jsx';
 // import VideoPanel from './VideoPanel.jsx';
@@ -17,10 +18,12 @@ import SignupEmail from './SignupEmail.jsx';
 import SignupName from './SignupName.jsx';
 import SignupQuestion from './SignupQuestion.jsx';
 // import SignupQuestion from './LoginName.jsx';
+import ImageUpload from './ImageUpload.jsx';
 import { Router, Route, Link, browserHistory } from 'react-router';
 
 render((
   <Router history={browserHistory}>
+  <Route path="/upload" component={ImageUpload}/>
   <Route path="/" component={App}/>
     <Route>
       <Route path="/signup" component={Signup}>

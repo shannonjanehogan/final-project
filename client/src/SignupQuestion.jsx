@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Signup from './Signup.jsx';
-import Dropdown from 'react-dropdown'
+import Dropdown from 'react-dropdown';
 
 const options = [
   'one', 'two', 'three'
