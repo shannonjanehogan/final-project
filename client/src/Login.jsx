@@ -34,4 +34,4 @@ const Login = React.createClass ({
   }
 });
 
-export default Photo;
+export default Login;

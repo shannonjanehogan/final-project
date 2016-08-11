@@ -14,6 +14,8 @@ const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
+const multer      = require('multer');
+const fs          = require('fs');
 
 function inspect(o, d) {
   console.log(util.inspect(o, { colors: true, depth: d || 1}));
@@ -26,6 +28,13 @@ server.listen(PORT, () => {
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 
+var upload = multer({ dest: './public/images/users/:id'});
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
   // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 app.use(express.static('public'));
@@ -52,6 +61,26 @@ app.use(knexLogger(knex));
 app.get("/", (req, res) => {
   res.render("index");
 });
+
+
+
+
+// File input field name is simply 'file'
+app.post('/api/images/upload', upload.single('img'), function(req, res) {
+  var img = __dirname + '/' + req.img.imgame;
+  fs.rename(req.img.path, img, function(err) {
+    if (err) {
+      console.log(err);
+      res.send(500);
+    } else {
+      res.json({
+        message: 'File uploaded successfully',
+        imgname: req.img.imgname
+      });
+    }
+  });
+});
+
 
 // app.get("/ping", (req, res) => {
 //   io.emit("news", "Cool beans");

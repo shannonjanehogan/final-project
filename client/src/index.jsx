@@ -4,7 +4,8 @@ require("../styles/layout.scss");
 // Render the top-level React component
 import React from 'react';
 import { render } from 'react-dom';
-import DropzoneComponent from 'react-dropzone';
+import Dropzone from 'react-dropzone';
+import Request from 'superagent';
 // import ReactDOM from 'react-dom';
 import App from './App.jsx';
 // import VideoPanel from './VideoPanel.jsx';
