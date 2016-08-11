@@ -16,23 +16,24 @@ const SignupName = React.createClass ({
 
   render: function() {
     return (
-      <div className="clearfix">
-          <form className="todoForm form-horizontal" onNameSubmit={this.onNameSubmit}>
-            <div className="form-group">
-              <label htmlFor="task" className="col-md-2 control-label">Please enter your name:</label>
-              <div className="col-md-10">
-                <input type="text" id="name" ref="name" className="form-control" placeholder="What's your name?" />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-10 col-md-offset-2 text-right">
-                <input type="submit" value="Save Item" className="btn btn-primary" />
-              </div>
-            </div>
-          </form>
-        </div>
+      <div>
+        <h2 className="center questions">Hi! What's your name?</h2>
+        <form onNameSubmit={this.onNameSubmit}>
+          <input className="center input" type="text" placeholder="Type your name here." />
+          <input className="center button-login-submit button-primary" type="submit" value="Submit" />
+        </form>
+      </div>
     );
   }
 });
 
 export default SignupName;
+
+  // <div>
+  //     <h2 class="center questions">Hi! What's your email?</h2>
+  //     <form>
+  //       <input class="center input" type="email" placeholder="Type your email here." />
+  //       <input class="center button-login-submit button-primary" type="submit" value="Submit" />
+  //     </form>
+  // </div>
+

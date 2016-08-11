@@ -1,4 +1,5 @@
-require("../styles/layout.scss");
+require("../styles/application.scss");
+
 // require("../../server/public/scripts/app.js");
 
 // Render the top-level React component

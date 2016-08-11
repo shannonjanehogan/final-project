@@ -21,8 +21,9 @@ const Login = React.createClass ({
   render() {
     console.log("Rendering <Login/>");
     return (
-      <Nav/>
-        <div className="login-body">
+
+      <div className="login-body">
+        <Nav/>
         <LoginEmail email={this.state.user.email} onEmailLogin={this.handleEmailLogin}/>
         <LoginQuestion
             answer={this.state.user.answer}
@@ -30,6 +31,7 @@ const Login = React.createClass ({
             onQuestionLogin={this.handleQuestionLogin}
             onLoggedIn={this.handleSuccessfulLogin}/>
       </div>
+
     );
   }
 });
