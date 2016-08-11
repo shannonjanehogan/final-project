@@ -1,0 +1,66 @@
+#nav-bar {
+  position: absolute;
+  top: 0;
+  height: 80px;
+  width: 100%;
+  background-color: rgba(151,186,209,0.7);
+  padding: 0 2em;
+  display:block;
+}
+
+#nav-bar .logo {
+  font-size: 2em;
+  font-family: Lato, san-serif;
+  font-weight: 900;
+  color: white;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+
+#welcome-nav-bar {
+  position: absolute;
+  height: 50%;
+  width: 100%;
+  background-color: rgba(151,186,209,0.7);
+  padding: 0 2em;
+  display:block;
+}
+
+#welcome-nav-bar .intro {
+  font-size: 4em;
+  font-family: Lato, san-serif;
+  font-weight: 900;
+  color: white;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+
+}
+
+#welcome-nav-bar .description {
+  font-size: 1em;
+  font-family: Lato, san-serif;
+  font-weight: 900;
+  color: white;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+}
+
+#welcome-nav-bar .instruction {
+  font-size: 2em;
+  font-family: Lato, san-serif;
+  font-weight: 900;
+  color: white;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}

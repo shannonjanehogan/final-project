@@ -16,21 +16,13 @@ const SignupEmail = React.createClass ({
 
   render: function() {
     return (
-      <div className="clearfix">
-          <form className="todoForm form-horizontal" onEmailSubmit={this.onEmailSubmit}>
-            <div className="form-group">
-              <label htmlFor="task" className="col-md-2 control-label">Please enter your email:</label>
-              <div className="col-md-10">
-                <input type="text" id="email" ref="email" className="form-control" placeholder="What's your email?" />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-10 col-md-offset-2 text-right">
-                <input type="submit" value="Save Item" className="btn btn-primary" />
-              </div>
-            </div>
-          </form>
-        </div>
+      <div>
+        <h2 className="center questions">Hi! What's your email?</h2>
+        <form onEmailSubmit={this.onEmailSubmit}>
+          <input className="center input" type="email" placeholder="Type your email here." />
+          <input className="center button-login-submit button-primary" type="submit" value="Submit" />
+        </form>
+      </div>
     );
   }
 });

@@ -1,4 +1,5 @@
-require("../styles/layout.scss");
+require("../styles/application.scss");
+
 // require("../../server/public/scripts/app.js");
 
 // Render the top-level React component
@@ -21,6 +22,7 @@ import { Router, Route, Link, browserHistory } from 'react-router';
 
 render((
   <Router history={browserHistory}>
+  <Route path="/" component={App}/>
     <Route>
       <Route path="/signup" component={Signup}>
         <Route path="/signup/name" component={SignupName} />

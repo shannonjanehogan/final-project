@@ -1,7 +1,109 @@
-body {
-  background-color: #EEE;
+html {
+  min-height: 100%
+}
 
-  h1 {
-    color: #244751;
-  }
+body {
+  font-family: "Lato", san-serif;
+}
+
+body h1 {
+  color: #244751;
+}
+
+body .center {
+  position:absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+body  .input {
+  margin-top: 30%;
+  width: 30%;
+}
+
+body .questions {
+  margin-top: 20%;
+  font-family: "Lato", san-serif;
+  font-weight: 900;
+  font-size: 4em;
+  text-align: center;
+}
+
+body .security-questions {
+  margin-top: 25%;
+  font-family: "Lato", san-serif;
+  font-weight: 900;
+  font-size: 2em;
+  text-align: center;
+  width: 50%;
+  height: 40px;
+}
+
+body .button-login-submit {
+  margin-top: 40%;
+  font-family: "Lato", san-serif;
+  width: 20%;
+}
+
+body .button-user {
+  font-family: "Lato", san-serif;
+  margin-left: 50%;
+  margin-top: 40px;
+  transform: translate(-50%, -50%);
+  font-size: 1.25em
+}
+
+
+body .video-panel {
+  margin-top: 100px;
+  float: left;
+  background-color: pink;
+  width: 50%;
+  height: 100%;
+
+}
+
+body .video-panel #webcam {
+  width: 90%;
+  height: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+body .photo-panel {
+  margin-top: 100px;
+  background-color: grey;
+  float: left;
+  width: 50%;
+  height: 100%;
+}
+
+body .sidebar-image-gallery {
+  font-size: 0;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.sidebar-image-gallery img {
+  opacity: 0.7;
+
+}
+
+.sidebar-image-gallery img:hover {
+  opacity: 1;
+}
+
+
+body .new-user {
+  margin-top: 420px;
+  float: left;
+  width: 50%;
+}
+
+body .returning-user {
+  margin-top: 420px;
+  float: left;
+  width: 50%;
 }

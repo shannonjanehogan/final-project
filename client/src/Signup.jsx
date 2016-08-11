@@ -29,13 +29,13 @@ const Signup = React.createClass ({
     console.log("Rendering <Signup/>");
     return (
       <div className="signup-body">
-      <Nav/>
-      <SignupName name={this.state.name} onNameSubmit={this.handleNameSubmit}/>
-      <SignupEmail email={this.state.email} onEmailSubmit={this.handleEmailSubmit}/>
-      <SignupQuestion
-          question={this.state.question}
-          answer={this.state.answer}
-          onAnswerSubmit={this.handleQuestionSubmit}/>
+        <Nav/>
+        <SignupName name={this.state.name} onNameSubmit={this.handleNameSubmit}/>
+        <SignupEmail email={this.state.email} onEmailSubmit={this.handleEmailSubmit}/>
+        <SignupQuestion
+            question={this.state.question}
+            answer={this.state.answer}
+            onAnswerSubmit={this.handleQuestionSubmit}/>
       </div>
     );
   }

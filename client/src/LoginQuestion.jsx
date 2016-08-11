@@ -26,25 +26,19 @@ const LoginQuestion = React.createClass ({
 
   render: function() {
     return (
-      <div className="clearfix">
-        <h4> Here is your security question: {this.props.user.answer}</h4>
-          <form className="todoForm form-horizontal" onAnswerLogin={this.onAnswerLogin} onLoggedin{this.onLoggedin}>
-            <div className="form-group">
-              <label htmlFor="task" className="col-md-2 control-label">Please enter your answer:</label>
-              <div className="col-md-10">
-                <input type="text" id="answer" ref="answer" className="form-control" placeholder="What's the answer to your security question?" />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-10 col-md-offset-2 text-right">
-                <input type="submit" value="Save Item" className="btn btn-primary" />
-              </div>
-            </div>
-          </form>
-        </div>
+      <div>
+        <h2 className="center questions"> {this.props.user.answer} </h2>
+        <form onAnswerLogin={this.onAnswerLogin} onLoggedin{this.onLoggedin}>
+          <input className="center input" type="text" placeholder="Type your answer here." />
+          <input className="center button-login-submit button-primary" type="submit" value="Submit" />
+        </form>
+      </div>
     );
   }
 });
 
 export default LoginQuestion;
+
+
+
 
