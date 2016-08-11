@@ -1,19 +1,49 @@
 import React, {Component} from 'react';
-import LoginEmail from './LoginEmail';
-import LoginQuestion from './LoginQuestion';
+import LoginEmail from './LoginEmail.jsx';
+import LoginQuestion from './LoginQuestion.jsx';
 import Nav from './Nav.jsx';
 
 const Login = React.createClass ({
   getInitialState: function () {
-    return {
+     return {
+      user: {
+        name: '',
+        email: '',
+        question: '',
+        id: ''
+      },
       isLoggedIn: false
     };
   },
   handleEmailLogin: function (email) {
-    this.setState({user: {email: email});
+    $.ajax({
+      type: 'GET',
+      url: 'http://localhost:8000/api/login/email',
+      data: email
+    })
+    .done(function(data) {
+      console.log("Got data from API: ", data);
+      this.setState({user: {name: data.name}});
+      this.setState({user: {question: data.question}});
+      this.setState({user: {id: data.id}});
+    })
+    .fail(function(jqXhr) {
+      console.log('failed to register');
+    });
   },
   handleQuestionLogin: function (question, answer) {
-    this.setState({user: {question: question, answer: answer});
+    $.ajax({
+      type: 'GET',
+      url: 'http://localhost:8000/api/login/submit',
+      data: answer
+    })
+    .done(function(data) {
+      console.log("Got data from API: ", data);
+      this.setState({user: {id: data.id}});
+    })
+    .fail(function(jqXhr) {
+      console.log('failed to register');
+    });
   },
   handleSuccessfulLogin: function () {
     this.setState({isLoggedIn: true});
@@ -36,4 +66,4 @@ const Login = React.createClass ({
   }
 });
 
-export default Photo;
+export default Login;

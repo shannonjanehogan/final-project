@@ -12,6 +12,7 @@ const Signup = React.createClass ({
         email: '',
         question: '',
         answer: '',
+        id: ''
       },
       isLoggedIn: false
     };
@@ -24,6 +25,18 @@ const Signup = React.createClass ({
   },
   handleQuestionSubmit: function (question, answer) {
     this.setState({user: {question: question, answer: answer}});
+      $.ajax({
+        type: 'POST',
+        url: 'http://localhost:8000/api/signup/submit',
+        data: this.state.user
+      })
+      .done(function(data) {
+        console.log("Got data from API: ", data);
+        this.setState({user: {id: data}});
+      })
+      .fail(function(jqXhr) {
+        console.log('failed to register');
+      });
   },
   render() {
     console.log("Rendering <Signup/>");
