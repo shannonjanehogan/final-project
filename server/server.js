@@ -48,9 +48,47 @@ app.use(morgan('dev'));
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
 
+app.use(function(req, res, next) {
+ res.header("Access-Control-Allow-Origin", "*");
+ res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+ next();
+});
+
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+app.post("/api/signup/submit", (req, res) => {
+  knex('users').insert({
+    'name': req.data.name,
+    'email': req.data.email,
+    'security_question': req.data.security_question,
+    'security_answer': req.data.security_answer})
+  .returning("id")
+  .then((results) => {
+    res.json(results);
+  });
+});
+
+app.get("/api/login/email", (req, res) => {
+  knex.select('*')
+    .from('users')
+    .returning('name', 'id', 'security_question')
+    .where('email', req.data.email)
+    .then((results) => {
+      res.json(results);
+    });
+});
+
+app.get("/api/login/submit", (req, res) => {
+  knex.select('id')
+    .from('users')
+    .returning('id')
+    .where('answer', req.data.answer)
+    .then((results) => {
+      res.json(results);
+    });
 });
 
 // app.get("/ping", (req, res) => {
