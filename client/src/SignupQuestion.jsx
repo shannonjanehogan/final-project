@@ -30,7 +30,7 @@ const SignupQuestion = React.createClass ({
     }
     this.props.saveQuestionValue(data.question);
     this.props.saveAnswerValue(data.answer);
-   this.props.nextStep()
+    this.props.nextStep()
   },
 
   render: function() {

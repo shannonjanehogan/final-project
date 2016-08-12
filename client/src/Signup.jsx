@@ -64,13 +64,11 @@ const Signup = React.createClass ({
       this.setState({ user });
     }.bind(this)()
   },
-
   nextStep: function() {
     this.setState({
       step : this.state.step + 1
     })
   },
-
 
   // submitRegistration: function() {
   //   // Handle via ajax submitting the user data, upon
