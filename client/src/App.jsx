@@ -3,6 +3,7 @@ import VideoPanel from './VideoPanel.jsx';
 import Photo from './Photo.jsx';
 import PhotoPanel from './PhotoPanel.jsx';
 import Nav from './Nav.jsx';
+import {Link} from 'react-router';
 
 const App = React.createClass ({
   getInitialState: function() {
@@ -36,11 +37,11 @@ const App = React.createClass ({
         </nav>
 
         <div className="new-user">
-          <button className="button-user button-primary">I'm a new user</button>
+          <Link className="button button-primary button-user" to="/signup">I'm a new user</Link>
         </div>
 
         <div className="returning-user">
-          <button className="button-user  button-primary">I'm a returning user</button>
+          <Link className="button button-primary button-user" to="/login">I'm a returning user</Link>
         </div>
         </div>
         );
