@@ -3,19 +3,19 @@ import LoginEmail from './LoginEmail.jsx';
 import LoginQuestion from './LoginQuestion.jsx';
 import Nav from './Nav.jsx';
 import App from './App.jsx';
-
-let fieldValues = {
-  name     : null,
-  email    : null,
-  question : null,
-  id       : null
-}
+import $ from 'jquery';
 
 const Login = React.createClass ({
   getInitialState: function () {
      return {
       step: 1,
-      isLoggedIn: false
+      isLoggedIn: false,
+      user: {
+        name: '',
+        email: '',
+        question: '',
+        id: ''
+      }
     };
   },
   nextStep: function() {
@@ -23,29 +23,33 @@ const Login = React.createClass ({
       step : this.state.step + 1
     })
   },
-  saveValues: function(field_value) {
-    return function() {
-      fieldValues = assign({}, fieldValues, field_value)
-    }.bind(this)()
-  },
-  handleEmailLogin: function (email) {
+  // saveValues: function(field_value) {
+  //   return function() {
+  //     fieldValues = assign({}, fieldValues, field_value)
+  //   }.bind(this)()
+  // },
+  validateEmailLogin: function (email) {
     $.ajax({
       type: 'GET',
-      url: 'http://localhost:8000/api/login/email',
+      url: 'http://localhost:8080/api/login/email',
+      dataType: "json",
       data: email
     })
     .done(function(data) {
       console.log("Got data from API: ", data);
-      this.setState({user: {name: data.name}});
-      this.setState({user: {question: data.question}});
-      this.setState({user: {id: data.id}});
-      this.nextStep()
+      return function() {
+        let user = this.state.user;
+        user.name = name;
+        user.question = question;
+        this.setState({ user });
+        this.nextStep()
+      }.bind(this)()
     })
     .fail(function(jqXhr) {
       console.log('failed to register');
     });
   },
-  handleQuestionLogin: function (question, answer) {
+  validateQuestionLogin: function (question, answer) {
     $.ajax({
       type: 'GET',
       url: 'http://localhost:8000/api/login/submit',
@@ -53,27 +57,28 @@ const Login = React.createClass ({
     })
     .done(function(data) {
       console.log("Got data from API: ", data);
-      this.setState({user: {id: data.id}});
+      return function() {
+        let user = this.state.user;
+        user.id = id;
+        this.setState({ user });
+      }.bind(this)()
     })
     .fail(function(jqXhr) {
       console.log('failed to register');
     });
   },
-  handleSuccessfulLogin: function () {
+  successfulLogin: function () {
     this.setState({isLoggedIn: true});
   },
   showStep: function() {
     switch (this.state.step) {
       case 1:
-        return <LoginEmail fieldValues={fieldValues}
-                              nextStep={this.nextStep}
-                              saveValues={this.saveValues} />
+        return <LoginEmail user={this.state.user}
+                            validateEmailLogin={this.validateEmailLogin}
+                            nextStep={this.nextStep} />
       case 2:
-        return <LoginQuestion fieldValues={fieldValues}
-                             nextStep={this.nextStep}
-                             saveValues={this.saveValues} />
-      case 3:
-        return <App />
+        return <LoginQuestion user={this.state.user}
+                             validateQuestionLogin={this.validateQuestionLogin} />
     }
   },
   render() {
@@ -82,12 +87,7 @@ const Login = React.createClass ({
 
       <div className="login-body">
         <Nav/>
-        <LoginEmail email={this.state.user.email} onEmailLogin={this.handleEmailLogin}/>
-        <LoginQuestion
-            answer={this.state.user.answer}
-            question={this.state.user.question}
-            onQuestionLogin={this.handleQuestionLogin}
-            onLoggedIn={this.handleSuccessfulLogin}/>
+        {this.showStep()}
       </div>
 
     );
