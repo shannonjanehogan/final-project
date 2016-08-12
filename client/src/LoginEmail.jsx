@@ -19,7 +19,7 @@ const LoginEmail = React.createClass ({
     return (
       <div>
         <h2 className="center questions">Hi! What's your email?</h2>
-        <form onEmailSubmit={this.onEmailLogin}>
+        <form onEmailLogin={this.onEmailLogin}>
           <input className="center input" type="email" placeholder="Type your email here." />
           <input className="center button-login-submit button-primary" type="submit" value="Submit" />
         </form>
@@ -30,10 +30,3 @@ const LoginEmail = React.createClass ({
 
 export default LoginEmail;
 
-      <div>
-        <h2 className="center questions">Hi! What's your email?</h2>
-        <form onEmailSubmit={this.onEmailLogin}>
-          <input className="center input" type="email" placeholder="Type your email here." />
-          <input className="center button-login-submit button-primary" type="submit" value="Submit" />
-        </form>
-      </div>

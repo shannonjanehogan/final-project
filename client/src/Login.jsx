@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import LoginEmail from './LoginEmail';
-import LoginQuestion from './LoginQuestion';
+import LoginEmail from './LoginEmail.jsx';
+import LoginQuestion from './LoginQuestion.jsx';
 import Nav from './Nav.jsx';
 
 const Login = React.createClass ({
@@ -10,10 +10,10 @@ const Login = React.createClass ({
     };
   },
   handleEmailLogin: function (email) {
-    this.setState({user: {email: email});
+    this.setState({user: {email: email}});
   },
   handleQuestionLogin: function (question, answer) {
-    this.setState({user: {question: question, answer: answer});
+    this.setState({user: {question: question, answer: answer}});
   },
   handleSuccessfulLogin: function () {
     this.setState({isLoggedIn: true});
@@ -36,4 +36,4 @@ const Login = React.createClass ({
   }
 });
 
-export default Photo;
+export default Login;

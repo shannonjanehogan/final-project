@@ -4,6 +4,7 @@ import Photo from './Photo.jsx';
 import PhotoPanel from './PhotoPanel.jsx';
 import Nav from './Nav.jsx';
 
+
 const App = React.createClass ({
   getInitialState: function() {
     return {user: {}, isLoggedIn: false};
@@ -18,30 +19,12 @@ const App = React.createClass ({
   },
   render: function() {
     console.log("Rendering <App/>");
-    if (this.state.isLoggedIn === true) {
+    if (this.state.isLoggedIn === false) {
       return (
         <div>
         <Nav/>
         <VideoPanel/>
-        <PhotoPanel photos={user.photos}/>
-        </div>
-        );
-    } else {
-      return (
-        <div>
-        <nav id="welcome-nav-bar">
-          <p className="intro"> Welcome to our app. </p>
-          <p className="description"> OUR APP is a Lighthouse Labs final project designed to encourage seniors to connect with their loved ones through intuitive and minimal user interface. </p>
-          <p className="instruction"> To begin, choose one of the options below. </p>
-        </nav>
-
-        <div className="new-user">
-          <button className="button-user button-primary">I'm a new user</button>
-        </div>
-
-        <div className="returning-user">
-          <button className="button-user  button-primary">I'm a returning user</button>
-        </div>
+        <PhotoPanel />
         </div>
         );
     }
