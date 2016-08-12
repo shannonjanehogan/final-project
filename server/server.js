@@ -75,8 +75,7 @@ app.post("/api/signup/submit", (req, res) => {
 app.get("/api/login/email", (req, res) => {
   console.log(req);
   knex('users')
-    .select('*')
-    // .returning('name', 'id', 'security_question')
+    .select('name', 'security_question')
     .where('email', req.query.email)
     .then((results) => {
       res.json(results);

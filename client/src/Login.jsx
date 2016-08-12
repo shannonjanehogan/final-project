@@ -28,22 +28,23 @@ const Login = React.createClass ({
   //     fieldValues = assign({}, fieldValues, field_value)
   //   }.bind(this)()
   // },
-  validateEmailLogin: function (email) {
+  validateEmailLogin: (email) => {
     $.ajax({
       type: 'GET',
       url: 'http://localhost:8080/api/login/email',
       dataType: "json",
       data: email
     })
-    .done(function(data) {
+    .done((data) => {
       console.log("Got data from API: ", data);
       return function() {
+        console.log(this.state.user);
         let user = this.state.user;
         user.name = name;
         user.question = question;
         this.setState({ user });
         this.nextStep()
-      }.bind(this)()
+      }
     })
     .fail(function(jqXhr) {
       console.log('failed to register');
