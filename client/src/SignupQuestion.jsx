@@ -10,15 +10,26 @@ const defaultOption = options[0]
 
 const SignupQuestion = React.createClass ({
 
-  onAnswerSubmit: function (e) {
+  // onQuestionSubmit: function (e) {
+  //   e.preventDefault();
+
+  //   // if (!question) {
+  //   //   return;
+  //   // }
+  //   this.props.onQuestionSubmit(question);
+  //   // this.refs.answer.value = '';
+  //   return;
+  // },
+
+  nextStep: function (e) {
     e.preventDefault();
-    var answer = this.refs.answer.value.trim();
-    if (!answer) {
-      return;
+    var data = {
+      question   : document.getElementById("security-questions").value,
+      answer     : this.refs.answer.value.trim()
     }
-    this.props.onAnswerSubmit(answer);
-    this.refs.answer.value = '';
-    return;
+    this.props.saveQuestionValue(data.question);
+    this.props.saveAnswerValue(data.answer);
+   this.props.nextStep()
   },
 
   render: function() {
@@ -26,14 +37,14 @@ const SignupQuestion = React.createClass ({
       <div>
         <h2 className="center questions">Choose a security question.</h2>
           <form onAnswerSubmit={this.onAnswerSubmit}>
-            <select name="security-questions" className="center security-questions">
-              <option value="volvo">Brand of your first car?</option>
-              <option value="saab">Name of your first pet?</option>
-              <option value="fiat">Which high school did you go to?</option>
-              <option value="audi">Name of birth place?</option>
+            <select id="security-questions" className="center security-questions" >
+              <option value="Brand of your first car?">Brand of your first car?</option>
+              <option value="Name of your first pet?">Name of your first pet?</option>
+              <option value="Which high school did you go to?">Which high school did you go to?</option>
+              <option value="Name of birth place?">Name of birth place?</option>
             </select>
-            <input className="center input" type="text" placeholder="Type your answer here." />
-            <input className="center button-login-submit button-primary" type="submit" value="Submit" />
+            <input className="center input" type="text" placeholder="Type your answer here." ref="answer" defaultValue={this.props.user.answer} />
+            <input className="center button-login-submit button-primary" type="submit" value="Submit" onClick={this.nextStep}/>
           </form>
       </div>
     );
@@ -41,21 +52,5 @@ const SignupQuestion = React.createClass ({
 });
 
 export default SignupQuestion;
-
-       // <Dropdown className="center security-questions" options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />
-
-// <div>
-//       <h2 class="center questions">Choose a security question.</h2>
-//       <select name="security-questions" class="center security-questions">
-//         <option value="volvo">Volvo</option>
-//         <option value="saab">Saab</option>
-//         <option value="fiat">Fiat</option>
-//         <option value="audi">Audi</option>
-//       </select>
-//       <form>
-//         <input class="center input" type="answer" placeholder="Type your answer here." />
-//         <input class="center button-login-submit button-primary" type="submit" value="Submit" />
-//       </form>
-//   </div>
 
 
