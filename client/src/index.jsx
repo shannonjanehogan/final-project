@@ -14,6 +14,7 @@ import Signup from './Signup.jsx';
 import SignupEmail from './SignupEmail.jsx';
 import SignupName from './SignupName.jsx';
 import SignupQuestion from './SignupQuestion.jsx';
+import $ from 'jquery';
 // import ImageUpload from './ImageUpload.jsx';
 import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router';
 

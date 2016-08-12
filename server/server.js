@@ -27,6 +27,13 @@ server.listen(PORT, () => {
 const usersRoutes = require("./routes/users");
 
   // Mount all resource routes
+
+app.use(function(req, res, next) {
+ res.header("Access-Control-Allow-Origin", "*");
+ res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+ next();
+});
+
 app.use("/api/users", usersRoutes(knex));
 app.use(express.static('public'));
 app.set("view engine", "ejs");
@@ -48,12 +55,6 @@ app.use(morgan('dev'));
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
 
-app.use(function(req, res, next) {
- res.header("Access-Control-Allow-Origin", "*");
- res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
- next();
-});
-
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
@@ -72,10 +73,11 @@ app.post("/api/signup/submit", (req, res) => {
 });
 
 app.get("/api/login/email", (req, res) => {
-  knex.select('*')
-    .from('users')
-    .returning('name', 'id', 'security_question')
-    .where('email', req.data.email)
+  console.log(req);
+  knex('users')
+    .select('*')
+    // .returning('name', 'id', 'security_question')
+    .where('email', req.query.email)
     .then((results) => {
       res.json(results);
     });

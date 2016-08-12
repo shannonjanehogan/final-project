@@ -4,31 +4,22 @@ import Login from './Login.jsx';
 
 const LoginQuestion = React.createClass ({
 
-  getInitialState: function() {
-    return {
-      isLoggedIn: false
-    };
-  },
+  nextStep: function(e) {
+    e.preventDefault()
 
-  onAnswerLogin: function (e) {
-    e.preventDefault();
-    var answer = this.refs.answer.value.trim();
-    if (!answer) {
-      return;
+    var data = {
+      answer     : this.refs.answer.value.trim(),
     }
-    this.props.onAnswerLogin(answer);
-    this.refs.answer.value = '';
-    return;
-  },
-  onLoggedin: function () {
-    this.setState({isLoggedIn: true});
+
+    this.props.validateQuestionLogin(data)
+    this.props.nextStep()
   },
   render: function() {
     return (
       <div>
-        <h2 className="center questions"> TO ADD: Security Question</h2>
-        <form onAnswerLogin={this.onAnswerLogin} onLoggedin={this.onLoggedin}>
-          <input className="center input" type="text" id="answer" ref="answer" placeholder="Type your answer here."/>
+        <h2 className="center questions"> {this.props.user.question} </h2>
+        <form>
+          <input className="center input" type="text" id="answer" ref="answer" placeholder="Type your answer here." defaultValue={this.props.user.answer} />
           <input className="center button-login-submit button-primary" type="submit" value="Submit" />
         </form>
       </div>
