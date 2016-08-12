@@ -67,18 +67,21 @@ app.get("/", (req, res) => {
 
 // File input field name is simply 'file'
 app.post('/api/images/upload', upload.single('img'), function(req, res) {
-  var img = __dirname + '/' + req.img.imgame;
-  fs.rename(req.img.path, img, function(err) {
-    if (err) {
-      console.log(err);
-      res.send(500);
-    } else {
-      res.json({
-        message: 'File uploaded successfully',
-        imgname: req.img.imgname
-      });
-    }
-  });
+  console.log("SERVER CONNECTED")
+  console.log(req)
+  var img = __dirname + '/public/images/users/:id' + req.file.filename;
+  // console.log(img)
+  // fs.rename(req.img.path, img, function(err) {
+  //   if (err) {
+  //     console.log(err);
+  //     res.send(500);
+  //   } else {
+  //     res.json({
+  //       message: 'File uploaded successfully',
+  //       imgname: req.file.originalName
+  //     });
+  //   }
+  // });
 });
 
 

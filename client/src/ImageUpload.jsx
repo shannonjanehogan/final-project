@@ -14,7 +14,7 @@ var ImageUpload = React.createClass({
     onDrop: function(files){
         var req = Request.post('http://localhost:8080/api/images/upload');
         files.forEach((file)=> {
-            req.attach(file.name, file);
+          req.attach("img", file);
         });
         req.end(function() {
           console.log("test");
