@@ -21,7 +21,7 @@ const LoginEmail = React.createClass ({
         <h2 className="center questions">Hi! What's your email?</h2>
         <form onEmailLogin={this.onEmailLogin}>
           <input className="center input" type="email" id="email" ref="email" placeholder="Type your email here." />
-          <input className="center button-login-submit button-primary" type="submit" value="Submit" />
+          <input className="center button-login-submit button-primary" type="submit" onClick={this.nextStep} value="Next" />
         </form>
       </div>
     );
