@@ -5,19 +5,19 @@ import SignupQuestion from './SignupQuestion.jsx';
 import Nav from './Nav.jsx';
 import App from './App.jsx';
 
-var user = {
-        name: '',
-        email: '',
-        question: '',
-        answer: '',
-        id: ''
-      };
 
 const Signup = React.createClass ({
   getInitialState: function () {
     return {
       step: 1,
-      isLoggedIn: false
+      isLoggedIn: false,
+      user: {
+        name: '',
+        email: '',
+        question: '',
+        answer: '',
+        id: ''
+      }
     };
   },
   // handleQuestionSubmit: function (question, answer) {
@@ -38,22 +38,30 @@ const Signup = React.createClass ({
 
   saveNameValue: function(name) {
     return function() {
-      user = {user: {name: name}}
+      let user = this.state.user;
+      user.name = name;
+      this.setState({ user });
     }.bind(this)()
   },
   saveEmailValue: function(email) {
     return function() {
-      user = {user: {email: email}}
+      let user = this.state.user;
+      user.email = email;
+      this.setState({ user });
     }.bind(this)()
   },
   saveQuestionValue: function(question) {
     return function() {
-      user = {user: {question: question}}
+      let user = this.state.user;
+      user.question = question;
+      this.setState({ user });
     }.bind(this)()
   },
   saveAnswerValue: function(answer) {
     return function() {
-      user = {user: {answer: answer}}
+      let user = this.state.user;
+      user.answer = answer;
+      this.setState({ user });
     }.bind(this)()
   },
 
@@ -78,22 +86,20 @@ const Signup = React.createClass ({
   showStep: function() {
     switch (this.state.step) {
       case 1:
-        return <SignupName user={user}
+        return <SignupName user={this.state.user}
                             nextStep={this.nextStep}
                             saveNameValue={this.saveNameValue}/>
       case 2:
-        return <SignupEmail  user={user}
+        return <SignupEmail  user={this.state.user}
                              nextStep={this.nextStep}
                              saveEmailValue={this.saveEmailValue} />
       case 3:
-        return <SignupQuestion user={user}
+        return <SignupQuestion user={this.state.user}
                                nextStep={this.nextStep}
                                saveQuestionValue={this.saveQuestionValue}
                                saveAnswerValue={this.saveAnswerValue}
                                // submitRegistration={this.submitRegistration}
                                />
-      case 4:
-        return <App/>
     }
   },
   render() {

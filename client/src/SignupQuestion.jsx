@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Signup from './Signup.jsx';
-import Dropdown from 'react-dropdown'
+import Dropdown from 'react-dropdown';
+import {Link} from 'react-router';
 
 const options = [
   'Brand of first car?', 'Name of your first pet?', 'Which high school did you go to?'
@@ -44,7 +45,7 @@ const SignupQuestion = React.createClass ({
               <option value="Name of birth place?">Name of birth place?</option>
             </select>
             <input className="center input" type="text" placeholder="Type your answer here." ref="answer" defaultValue={this.props.user.answer} />
-            <input className="center button-login-submit button-primary" type="submit" value="Submit" onClick={this.nextStep}/>
+            <Link className="button center button-login-submit button-primary" to="/">Submit</Link>
           </form>
       </div>
     );
