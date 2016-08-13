@@ -38,7 +38,7 @@ const SignupQuestion = React.createClass ({
               </div>
             </div>
           </form>
-        </div>
+      </div>
     );
   }
 });
