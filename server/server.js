@@ -68,7 +68,7 @@ app.get("/", (req, res) => {
 // File input field name is simply 'file'
 app.post('/api/images/upload', upload.single('img'), function(req, res) {
   console.log("SERVER CONNECTED")
-  console.log(req)
+  console.log("req.file.path", req.file.path)
   var img = __dirname + '/public/images/users/:id' + req.file.filename;
   // console.log(img)
   // fs.rename(req.img.path, img, function(err) {
