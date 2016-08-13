@@ -19,7 +19,7 @@ const LoginQuestion = React.createClass ({
           className="center questions">
           {this.props.user.question}
         </h2>
-        <form>
+        <form onClick={this.nextStep} onSubmit={this.nextStep}>
           <input
             className="center input"
             type="text"
@@ -29,7 +29,6 @@ const LoginQuestion = React.createClass ({
             defaultValue={this.props.user.answer}
           />
           <Link
-            onClick={this.nextStep}
             className="button center button-login-submit button-primary"
             to="/">Submit
           </Link>

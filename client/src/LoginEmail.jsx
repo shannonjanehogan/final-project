@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Login from './Login.jsx';
 import Nav from './Nav.jsx';
+import App from './App.jsx';
 
 const LoginEmail = React.createClass ({
 
@@ -29,6 +30,7 @@ const LoginEmail = React.createClass ({
             className="center button-login-submit button-primary"
             type="submit"
             onClick={this.nextStep}
+            onSubmit={this.nextStep}
             value="Next" />
         </form>
       </div>

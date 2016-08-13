@@ -5,10 +5,18 @@ import PhotoPanel from './PhotoPanel.jsx';
 import Nav from './Nav.jsx';
 import {Link} from 'react-router';
 import $ from 'jquery';
+import Login from './Login.jsx';
+import LoginEmail from './LoginEmail.jsx';
+import LoginQuestion from './LoginQuestion.jsx';
+import Signup from './Signup.jsx';
+import SignupEmail from './SignupEmail.jsx';
+import SignupName from './SignupName.jsx';
+import SignupQuestion from './SignupQuestion.jsx';
+
 
 const App = React.createClass ({
   getInitialState: function() {
-    return {user: {}, isLoggedIn: false};
+    return {user: {id: 0}, isLoggedIn: false};
   },
   componentDidMount() {
     console.log("componentDidMount App");
@@ -20,12 +28,14 @@ const App = React.createClass ({
   },
   render: function() {
     console.log("Rendering <App/>");
-    if (this.state.isLoggedIn === true) {
+    if (this.state.isLoggedIn === true && this.state.user.id > 0) {
       return (
         <div>
         <Nav/>
         <VideoPanel/>
         <PhotoPanel photos={user.photos}/>
+        <Login userID = {this.state.user.id}/>
+        <Signup userID = {this.state.user.id} />
         </div>
         );
     } else {
