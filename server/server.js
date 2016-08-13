@@ -61,11 +61,12 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/signup/submit", (req, res) => {
-  knex('users').insert({
-    'name': req.data.name,
-    'email': req.data.email,
-    'security_question': req.data.security_question,
-    'security_answer': req.data.security_answer})
+  knex('users')
+  .insert({
+    'name': req.body.name,
+    'email': req.body.email,
+    'security_question': req.body.question,
+    'security_answer': req.body.answer})
   .returning("id")
   .then((results) => {
     res.json(results);
@@ -75,18 +76,17 @@ app.post("/api/signup/submit", (req, res) => {
 app.get("/api/login/email", (req, res) => {
   console.log(req);
   knex('users')
-    .select('name', 'security_question')
-    .where('email', req.query.email)
-    .then((results) => {
-      res.json(results);
-    });
+  .select('name', 'security_question')
+  .where('email', req.query.email)
+  .then((results) => {
+    res.json(results);
+  });
 });
 
 app.get("/api/login/submit", (req, res) => {
-  knex.select('id')
-    .from('users')
-    .returning('id')
-    .where('answer', req.data.answer)
+   knex('users')
+    .select('id')
+    .where('answer', req.query.answer)
     .then((results) => {
       res.json(results);
     });
