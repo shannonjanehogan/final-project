@@ -4,7 +4,7 @@ import SignupEmail from './SignupEmail.jsx';
 import SignupQuestion from './SignupQuestion.jsx';
 import Nav from './Nav.jsx';
 import App from './App.jsx';
-
+import $ from 'jquery';
 
 const Signup = React.createClass ({
   getInitialState: function () {
@@ -20,48 +20,37 @@ const Signup = React.createClass ({
       }
     };
   },
-  // handleQuestionSubmit: function (question, answer) {
-  //   this.setState({user: {question: question, answer: answer}});
-  //     $.ajax({
-  //       type: 'POST',
-  //       url: 'http://localhost:8000/api/signup/submit',
-  //       data: this.state.user
-  //     })
-  //     .done(function(data) {
-  //       console.log("Got data from API: ", data);
-  //       this.setState({user: {id: data}});
-  //     })
-  //     .fail(function(jqXhr) {
-  //       console.log('failed to register');
-  //     });
-  // },
-
+  handleQuestionSubmit: function (user) {
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:8080/api/signup/submit',
+      dataType: "json",
+      data: user
+    })
+    .done(function(data) {
+      console.log("Got data from API: ", data);
+    })
+    .fail(function(jqXhr) {
+      console.log('failed to register');
+    });
+  },
   saveNameValue: function(name) {
     return function() {
-      let user = this.state.user;
-      user.name = name;
-      this.setState({ user });
+      let user = {...this.state.user, name: name}
+      this.setState({...this.state, user: user})
     }.bind(this)()
   },
   saveEmailValue: function(email) {
     return function() {
-      let user = this.state.user;
-      user.email = email;
-      this.setState({ user });
+      let user = {...this.state.user, email: email}
+      this.setState({...this.state, user: user})
     }.bind(this)()
   },
-  saveQuestionValue: function(question) {
+  saveSecurityValue: function(question, answer) {
     return function() {
-      let user = this.state.user;
-      user.question = question;
-      this.setState({ user });
-    }.bind(this)()
-  },
-  saveAnswerValue: function(answer) {
-    return function() {
-      let user = this.state.user;
-      user.answer = answer;
-      this.setState({ user });
+      let user = {...this.state.user, question: question, answer: answer}
+      this.setState({...this.state, user: user})
+      this.handleQuestionSubmit(user);
     }.bind(this)()
   },
   nextStep: function() {
@@ -69,18 +58,6 @@ const Signup = React.createClass ({
       step : this.state.step + 1
     })
   },
-
-  // submitRegistration: function() {
-  //   // Handle via ajax submitting the user data, upon
-  //   // success return this.nextStop(). If it fails,
-  //   // show the user the error but don't advance
-
-  //   this.nextStep()
-  //   this.setState({
-  //     isLoggedIn: true
-  //   })
-  // },
-
   showStep: function() {
     switch (this.state.step) {
       case 1:
@@ -90,18 +67,15 @@ const Signup = React.createClass ({
       case 2:
         return <SignupEmail  user={this.state.user}
                              nextStep={this.nextStep}
-                             saveEmailValue={this.saveEmailValue} />
+                             saveEmailValue={this.saveEmailValue}/>
       case 3:
         return <SignupQuestion user={this.state.user}
                                nextStep={this.nextStep}
-                               saveQuestionValue={this.saveQuestionValue}
-                               saveAnswerValue={this.saveAnswerValue}
-                               // submitRegistration={this.submitRegistration}
-                               />
+                               saveSecurityValue={this.saveSecurityValue}/>
     }
   },
   render() {
-    console.log("Rendering <Signup/>");
+    console.log("Rendering <Signup/>", this.state);
     return (
       <div className="signup-body">
         <Nav/>

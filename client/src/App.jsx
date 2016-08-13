@@ -4,6 +4,7 @@ import Photo from './Photo.jsx';
 import PhotoPanel from './PhotoPanel.jsx';
 import Nav from './Nav.jsx';
 import {Link} from 'react-router';
+import $ from 'jquery';
 
 const App = React.createClass ({
   getInitialState: function() {
@@ -11,7 +12,7 @@ const App = React.createClass ({
   },
   componentDidMount() {
     console.log("componentDidMount App");
-    $.get("http://localhost:8000/api/users")
+    $.get("http://localhost:8080/api/users")
     .done(function(user) {
       console.log("Got data from API: ", user);
       this.setState({user: user, isLoggedIn: true})

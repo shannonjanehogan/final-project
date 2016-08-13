@@ -24,28 +24,32 @@ const SignupQuestion = React.createClass ({
 
   nextStep: function (e) {
     e.preventDefault();
-    var data = {
-      question   : document.getElementById("security-questions").value,
-      answer     : this.refs.answer.value.trim()
-    }
-    this.props.saveQuestionValue(data.question);
-    this.props.saveAnswerValue(data.answer);
-    this.props.nextStep()
+    let question = document.getElementById("security-questions").value;
+    let answer   = this.refs.answer.value.trim();
+    this.props.saveSecurityValue(question, answer);
   },
 
   render: function() {
     return (
       <div>
         <h2 className="center questions">Choose a security question.</h2>
-          <form onAnswerSubmit={this.onAnswerSubmit}>
+          <form>
             <select id="security-questions" className="center security-questions" >
               <option value="Brand of your first car?">Brand of your first car?</option>
               <option value="Name of your first pet?">Name of your first pet?</option>
               <option value="Which high school did you go to?">Which high school did you go to?</option>
               <option value="Name of birth place?">Name of birth place?</option>
             </select>
-            <input className="center input" type="text" placeholder="Type your answer here." ref="answer" defaultValue={this.props.user.answer} />
-            <Link className="button center button-login-submit button-primary" to="/">Submit</Link>
+            <input
+              className="center input"
+              type="text"
+              placeholder="Type your answer here."
+              ref="answer"
+              defaultValue={this.props.user.answer} />
+            <Link
+              onClick={this.nextStep}
+              className="button center button-login-submit button-primary"
+              to="/">Submit</Link>
           </form>
       </div>
     );
