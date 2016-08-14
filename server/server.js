@@ -76,7 +76,7 @@ app.get('/api/upload/email', (req, res) => {
 });
 
 
-app.post('/api/images/upload', (req, res) => {
+app.post('/api/images/', (req, res) => {
   console.log("SERVER CONNECTED")
   debugger;
   var file_path = __dirname + '/public/images/users/2' + req.file.filename;

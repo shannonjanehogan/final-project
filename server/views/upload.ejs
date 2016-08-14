@@ -16,18 +16,17 @@
         reader.readAsDataURL(file);
         uploadPhoto(file);
       }
-    }
+    };
 
     function uploadPhoto (file) {
       $.ajax({
-        type: 'GET',
-        url: 'http://localhost:8080/api/images/upload',
+        method: 'POST',
+        url: '/api/images/',
         dataType: "json",
-        data: email
-      })
-      .done(function(data){
-        let id = data[0].id;
-        _uploadPhoto(id, files);
+        data: file,
+        success: function() {
+          console.log("SUCCESS");
+        }
       })
     }
     </script>
@@ -46,7 +45,7 @@
           </div>
           <div class="row">
             <div class="col-md-10 col-md-offset-2 text-right">
-              <input type="file" onchange="previewFile()"><br>
+              <input type="file" onchange="previewFile()" id="photo"><br>
               <img src="" height="200" alt="Image preview...">
             </div>
           </div>
