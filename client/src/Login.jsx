@@ -48,13 +48,13 @@ const Login = React.createClass ({
       data: answer
     })
     .done(function(data) {
-      return function() {
         // let user = {...this.state.user, name: name}
         // this.setState({...this.state, user: user})
         let user = Object.assign({}, self.state.user);
+        console.log(data);
         user.id = data[0].id;
         self.setState({ user, isLoggedIn: true });
-      }
+        self.props._updateUserID(user.id);
     })
     .fail(function(jqXhr) {
       console.log('failed to register');
@@ -71,7 +71,8 @@ const Login = React.createClass ({
                             nextStep={this.nextStep} />
       case 2:
         return <LoginQuestion user={this.state.user}
-                             validateQuestionLogin={this.validateQuestionLogin.bind(this)} />
+                             validateQuestionLogin={this.validateQuestionLogin.bind(this)}
+                              />
     }
   },
   render() {

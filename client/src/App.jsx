@@ -18,24 +18,31 @@ const App = React.createClass ({
   getInitialState: function() {
     return {user: {id: 0}, isLoggedIn: false};
   },
-  componentDidMount() {
-    console.log("componentDidMount App");
-    $.get("http://localhost:8080/api/users")
-    .done(function(user) {
-      console.log("Got data from API: ", user);
-      this.setState({user: user, isLoggedIn: true})
-    }.bind(this));
+  // componentDidMount() {
+  //   console.log("componentDidMount App");
+  //   $.get("http://localhost:8080/api/users")
+  //   .done(function(user) {
+  //     console.log("Got data from API: ", user);
+  //     this.setState({user: user, isLoggedIn: true})
+  //   }.bind(this));
+  // },
+  _updateUserID: function(id) {
+    return function() {
+      debugger;
+      let user = {...this.state.user, id: id}
+      this.setState({...this.state, user: user})
+    }.bind(this)()
   },
   render: function() {
     console.log("Rendering <App/>");
-    if (this.state.isLoggedIn === true && this.state.user.id > 0) {
+    if (this.state.user.id > 0) {
       return (
         <div>
         <Nav/>
         <VideoPanel/>
         <PhotoPanel photos={user.photos}/>
-        <Login userID = {this.state.user.id}/>
-        <Signup userID = {this.state.user.id} />
+        <Login _updateUserID= {this._updateUserID} />
+        <Signup _updateUserID= {this._updateUserID} />
         </div>
         );
     } else {
