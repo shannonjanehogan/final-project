@@ -62,14 +62,48 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/upload", (req, res) => {
+  res.render("upload");
+});
 
+app.get('/api/upload/email', (req, res) => {
+  knex('users')
+    .select('id')
+    .where('email', req.query.email)
+    .then((results) => {
+      res.json(results);
+  });
+});
+
+
+app.post('/api/images/upload', (req, res) => {
+  console.log("SERVER CONNECTED")
+  debugger;
+  var file_path = __dirname + '/public/images/users/2' + req.file.filename;
+  knex('photos')
+    .insert({
+      'user_id': req.body.name,
+      'file_path': file_path})
+    .returning("id")
+    .then((results) => {
+      res.json(results);
+  });
 
 
 // File input field name is simply 'file'
-app.post('/api/images/upload', upload.single('img'), function(req, res) {
-  console.log("SERVER CONNECTED")
-  console.log("req.file.path", req.file.path)
-  var img = __dirname + '/public/images/users/:id' + req.file.filename;
+// app.post('/api/images/upload', upload.single('imgBLAH'), (req, res) => {
+//   debugger;
+//   console.log("SERVER CONNECTED")
+//   console.log("req.file.path", req.file)
+//   var file_path = __dirname + '/public/images/users/{id}' + req.file.filename;
+//   knex('photos')
+//     .insert({
+//       'user_id': req.body.name,
+//       'file_path': file_path})
+//     .returning("id")
+//     .then((results) => {
+//       res.json(results);
+//   });
   // console.log(img)
   // fs.rename(req.img.path, img, function(err) {
   //   if (err) {

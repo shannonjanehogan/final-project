@@ -10,28 +10,15 @@ var ImageUpload = React.createClass({
         files: []
       };
   },
-  onDrop: function(files){
-    let req = Request.post('http://localhost:8080/api/images/upload');
-    files.forEach((file)=> {
-      req.attach("img", file);
-    });
-    req.end(function() {
-      console.log("test");
-    });
-  },
-  onOpenClick: function () {
-    this.refs.dropzone.open();
-  },
-  _onSubmitHandler: function (email, file) {
-    let self = this;
+  _onSubmitHandler: function (e, files) {
     e.preventDefault();
+    let self = this;
     let useremail = self.refs.email.value.trim();
-    let userfile = self.refs.file.value.trim();
-    self.props.validateEmail(email, file);
+    self.props.validateEmail(email, files);
     self.ref.email.value = '';
     return;
   },
-  _validateEmail: (email, file) => {
+  _validateEmail: (email, files) => {
     let self = this;
     $.ajax({
       type: 'GET',
@@ -41,30 +28,38 @@ var ImageUpload = React.createClass({
     })
     .done(function(data){
       let id = data[0].id;
-      _uploadPhoto(id, file);
+      _uploadPhoto(id, files);
     })
     .fail(function(jqXhr) {
       console.log('failed to register');
     });
   },
-  _uploadPhoto: (id, file) => {
+  _uploadPhoto: (files) => {
     let self = this;
-    $.ajax({
-      type: 'POST',
-      url: 'http://localhost:8080/api/images/upload',
-      dataType: "json",
-      data: id, file
-    })
-    .done(function(data){
-      let user = Object.assign({}, self.state.user);
-      user.name = data[0].name;
-      user.question = data[0].security_question;
-      self.setState({ user, step: 2 });
-    })
-    .fail(function(jqXhr) {
-      console.log('failed to register');
+    let req = Request.post('http://localhost:8080/api/images/upload').send({data: id});
+    files.forEach((file)=> {
+      req.attach("img", file);
+    });
+    req.end(function() {
+      console.log("test");
     });
   },
+  previewFile: function () {
+    let self = this;
+    var preview = document.querySelector('img');
+    var file    = document.querySelector('input[type=file]').files[0];
+    var reader  = new FileReader();
+
+    reader.addEventListener("load", function () {
+      preview.src = reader.result;
+    }, false);
+
+    if (file) {
+      debugger;
+      reader.readAsDataURL(file);
+      self._uploadPhoto(file)
+    }
+  }.bind(this);,
   render: function () {
     return (
       <div className="clearfix">
@@ -75,18 +70,12 @@ var ImageUpload = React.createClass({
               <input type="text" id="email" ref="email" className="form-control" placeholder="What's their email?" />
             </div>
           </div>
-          <Dropzone ref="dropzone">
-              <div>Try dropping some files here, or click to select files to upload.</div>
-          </Dropzone>
-          <button type="button" onClick={this.onOpenClick}>
-              Open Dropzone
-          </button>
-          {this.state.files &&
-            <div>
-              <h2>Uploading {this.state.files.length} files...</h2>
-              <div>{this.state.files.map((file) => <img src={file.preview} /> )}</div>
+          <div className="row">
+            <div className="col-md-10 col-md-offset-2 text-right">
+              <input type="file" onChange={this.previewFile}/>
+              <img src="" height="200" alt="Image preview..."/>
             </div>
-          }
+          </div>
           <div className="row">
             <div className="col-md-10 col-md-offset-2 text-right">
               <input

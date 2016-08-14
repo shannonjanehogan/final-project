@@ -1,0 +1,65 @@
+<!doctype html>
+  <html lang="en">
+    <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script> function previewFile() {
+      var preview = document.querySelector('img');
+      var file    = document.querySelector('input[type=file]').files[0];
+      var reader  = new FileReader();
+
+      reader.addEventListener("load", function () {
+        preview.src = reader.result;
+      }, false);
+
+      if (file) {
+        reader.readAsDataURL(file);
+        uploadPhoto(file);
+      }
+    }
+
+    function uploadPhoto (file) {
+      $.ajax({
+        type: 'GET',
+        url: 'http://localhost:8080/api/images/upload',
+        dataType: "json",
+        data: email
+      })
+      .done(function(data){
+        let id = data[0].id;
+        _uploadPhoto(id, files);
+      })
+    }
+    </script>
+    <script>
+
+    </script>
+    </head>
+    <body>
+      <div class="clearfix">
+        <form class="todoForm form-horizontal">
+          <div class="form-group">
+            <label htmlFor="task" class="col-md-2 control-label">Please enter the email of who you want the photo sent to:</label>
+            <div class="col-md-10">
+              <input type="text" id="email" ref="email" class="form-control" placeholder="What's their email?" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-10 col-md-offset-2 text-right">
+              <input type="file" onchange="previewFile()"><br>
+              <img src="" height="200" alt="Image preview...">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-10 col-md-offset-2 text-right">
+              <input
+                type="submit"
+                value="Send Photo"
+                class="btn btn-primary" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </body>
+</html>
+

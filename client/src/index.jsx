@@ -48,6 +48,7 @@ render((
   </Router>
  ),document.getElementById('react-root'));
 
+const upload =
 
 // render((
 //   <Router history={browserHistory}>
