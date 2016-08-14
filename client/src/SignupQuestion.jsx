@@ -22,18 +22,31 @@ const SignupQuestion = React.createClass ({
   //   return;
   // },
 
+  validateAnswer: function() {
+    var x = document.answerForm.inputAnswer.value;
+    if ( x == null || x == "")
+    {
+      alert("You have entered an invalid answer!")
+      return false
+    } else {
+        return true
+      }
+  },
+
   nextStep: function (e) {
     e.preventDefault();
-    let question = document.getElementById("security-questions").value;
-    let answer   = this.refs.answer.value.trim();
-    this.props.saveSecurityValue(question, answer);
+    if (this.validateAnswer()) {
+      let question = document.getElementById("security-questions").value;
+      let answer   = this.refs.answer.value.trim();
+      this.props.saveSecurityValue(question, answer);
+    }
   },
 
   render: function() {
     return (
       <div>
         <h2 className="center questions">Choose a security question.</h2>
-          <form>
+          <form name="answerForm">
             <select id="security-questions" className="center security-questions" >
               <option value="Brand of your first car?">Brand of your first car?</option>
               <option value="Name of your first pet?">Name of your first pet?</option>
@@ -41,6 +54,7 @@ const SignupQuestion = React.createClass ({
               <option value="Name of birth place?">Name of birth place?</option>
             </select>
             <input
+              name="inputAnswer"
               className="center input"
               type="text"
               placeholder="Type your answer here."

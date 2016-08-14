@@ -28,9 +28,12 @@ const Signup = React.createClass ({
       data: user
     })
     .done(function(data) {
+      alert("Your account has been created!")
       console.log("Got data from API: ", data);
     })
     .fail(function(jqXhr) {
+      alert("Failed to register!")
+
       console.log('failed to register');
     });
   },
@@ -70,7 +73,6 @@ const Signup = React.createClass ({
                              saveEmailValue={this.saveEmailValue}/>
       case 3:
         return <SignupQuestion user={this.state.user}
-                               nextStep={this.nextStep}
                                saveSecurityValue={this.saveSecurityValue}/>
     }
   },

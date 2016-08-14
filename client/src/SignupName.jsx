@@ -3,18 +3,34 @@ import Signup from './Signup.jsx';
 
 const SignupName = React.createClass ({
 
+  validateName: function() {
+    var x = document.nameForm.inputName.value;
+    if (x == null || x == "") {
+        alert("Name must be filled out");
+        return false;
+    } else {
+      return true;
+    }
+  },
+
+
   nextStep: function(e) {
     e.preventDefault()
-    this.props.saveNameValue(this.refs.name.value)
-    this.props.nextStep()
+    if (this.validateName()) {
+      this.props.saveNameValue(this.refs.name.value)
+      this.props.nextStep()
+    }
   },
+
+
 
   render: function() {
     return (
       <div>
         <h2 className="center questions">Hi! What's your name?</h2>
-        <form>
+        <form name="nameForm">
           <input
+            name="inputName"
             className="center input"
             type="text"
             ref="name"
