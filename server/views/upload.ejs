@@ -15,19 +15,18 @@
       if (file) {
         reader.readAsDataURL(file);
         uploadPhoto(file);
+
       }
     }
 
     function uploadPhoto (file) {
       $.ajax({
-        type: 'GET',
-        url: 'http://localhost:8080/api/images/upload',
+        type: 'POST',
+        url: 'http://localhost:8080/api/images',
         dataType: "json",
-        data: email
+        data: file
       })
       .done(function(data){
-        let id = data[0].id;
-        _uploadPhoto(id, files);
       })
     }
     </script>
