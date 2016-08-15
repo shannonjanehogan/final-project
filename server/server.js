@@ -107,7 +107,7 @@ app.get('/api/upload/email', (req, res) => {
 });
 
 
-app.post('/api/images/', (req, res) => {
+app.post('/api/images', (req, res) => {
   console.log("SERVER CONNECTED")
 <<<<<<< HEAD
   debugger;
