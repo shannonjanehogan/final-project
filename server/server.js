@@ -109,6 +109,7 @@ app.get('/api/upload/email', (req, res) => {
 
 app.post('/api/images/', (req, res) => {
   console.log("SERVER CONNECTED")
+<<<<<<< HEAD
   debugger;
   var file_path = __dirname + '/public/images/users/2' + req.file.filename;
   knex('photos')
@@ -135,6 +136,10 @@ app.post('/api/images/', (req, res) => {
 //     .then((results) => {
 //       res.json(results);
 //   });
+=======
+  console.log(req)
+  var img = __dirname + '/public/images/users/:id' + req.file.filename;
+>>>>>>> parent of 9280b1a... New migration: add photos table to database, add photos seed file
   // console.log(img)
   // fs.rename(req.img.path, img, function(err) {
   //   if (err) {
