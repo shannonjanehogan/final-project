@@ -22,7 +22,7 @@
     function uploadPhoto (file) {
       $.ajax({
         method: 'POST',
-        url: '/api/images/',
+        url: '/api/images',
         dataType: "json",
         data: file,
         success: function() {
