@@ -1,7 +1,7 @@
 <!doctype html>
   <html lang="en">
     <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     <script> function previewFile() {
       var preview = document.querySelector('img');
@@ -33,10 +33,19 @@
     </script>
     <script>
 
-    </script>
+    </script> -->
     </head>
     <body>
-      <div class="clearfix">
+
+    <form id        =  "uploadForm"
+     enctype   =  "multipart/form-data"
+     action    =  "/api/photo"
+     method    =  "post"
+>
+<input type="file" name="userPhoto" />
+<input type="submit" value="Upload Image" name="submit">
+</form>
+      <!-- <div class="clearfix">
         <form class="todoForm form-horizontal">
           <div class="form-group">
             <label htmlFor="task" class="col-md-2 control-label">Please enter the email of who you want the photo sent to:</label>
@@ -59,7 +68,7 @@
             </div>
           </div>
         </form>
-      </div>
+      </div> -->
     </body>
 </html>
 
