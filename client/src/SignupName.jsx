@@ -37,7 +37,8 @@ const SignupName = React.createClass ({
             placeholder="Type your name here."
             defaultValue={this.props.user.name}/>
           <input
-            className="center button-login-submit button-primary"
+            alt="HI"
+            className="center button button-primary button-login-submit "
             type="submit"
             value="Submit"
             onClick={this.nextStep}/>

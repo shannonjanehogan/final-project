@@ -8,8 +8,8 @@ const Landing = React.createClass ({
     return (
       <div>
         <nav id="welcome-nav-bar">
-      <p class="intro"> Welcome to our app. </p>
-      <p class="description"> OUR APP is a Lighthouse Labs final project designed to encourage seniors to connect with their loved ones through intuitive and minimal user interface. </p>
+      <p class="intro"> Welcome to GAB. </p>
+      <p class="description"> GAB is a Lighthouse Labs final project designed to encourage seniors to connect with their loved ones through intuitive and minimal user interface. </p>
       <p class="instruction"> To begin, choose one of the options below. </p>
     </nav>
 

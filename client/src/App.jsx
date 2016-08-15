@@ -32,9 +32,9 @@ const App = React.createClass ({
       return (
         <div>
         <nav id="welcome-nav-bar">
-          <p className="intro"> Welcome to our app. </p>
-          <p className="description"> OUR APP is a Lighthouse Labs final project designed to encourage seniors to connect with their loved ones through intuitive and minimal user interface. </p>
-          <p className="instruction"> To begin, choose one of the options below. </p>
+          <p className="intro"> Welcome to GAB. </p>
+          <p className="description"> GAB is a program designed to encourage seniors to connect with their loved ones through intuitive and minimal user interface. </p>
+          <p className="instruction"> To begin, click one of the options below. </p>
         </nav>
 
         <div className="new-user">
