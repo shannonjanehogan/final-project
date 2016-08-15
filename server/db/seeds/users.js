@@ -7,7 +7,7 @@ exports.seed = function(knex, Promise) {
           name: 'Alice',
           email: 'alice@gmail.com',
           security_question: 'Who was your favorite teacher?',
-          security_answer: 'Ms.Bell'
+          security_answer: 'Bell'
         }),
       ]);
     });
