@@ -16,6 +16,7 @@ const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 const multer      = require('multer');
 const fs          = require('fs');
+// const router      = express.Router()
 
 function inspect(o, d) {
   console.log(util.inspect(o, { colors: true, depth: d || 1}));
@@ -25,16 +26,46 @@ server.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
 
-// Seperated Routes for each Resource
-const usersRoutes = require("./routes/users");
-
-var upload = multer({ dest: './public/images/users/:id'});
-
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+// Seperated Routes for each Resource
+const usersRoutes = require("./routes/users");
+
+
+
+
+
+
+var storage =   multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './uploads');
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.fieldname + '-' + Date.now());
+  }
+});
+var upload = multer({ storage : storage}).single('userPhoto');
+
+app.get('/',function(req,res){
+      res.sendFile(__dirname + "/index.html");
+});
+
+app.post('/api/photo',function(req,res){
+    upload(req,res,function(err) {
+        if(err) {
+            return res.end("Error uploading file.");
+        }
+        res.end("File is uploaded");
+    });
+});
+
+
+
+
+
   // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 app.use(express.static('public'));
