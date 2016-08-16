@@ -59,7 +59,7 @@ var ImageUpload = React.createClass({
       reader.readAsDataURL(file);
       self._uploadPhoto(file)
     }
-  }.bind(this);,
+  },
   render: function () {
     return (
       <div className="clearfix">

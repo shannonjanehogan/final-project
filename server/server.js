@@ -34,11 +34,6 @@ app.use(function(req, res, next) {
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 
-
-
-
-
-
 var storage =   multer.diskStorage({
   destination: function (req, file, callback) {
     callback(null, './uploads');
@@ -61,10 +56,6 @@ app.post('/api/photo',function(req,res){
         res.end("File is uploaded");
     });
 });
-
-
-
-
 
   // Mount all resource routes
 
@@ -98,7 +89,6 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-<<<<<<< HEAD
 app.post("/api/signup/submit", (req, res) => {
   knex('users')
   .insert({
@@ -130,7 +120,6 @@ app.get("/api/login/submit", (req, res) => {
     });
 });
 
-=======
 app.get("/upload", (req, res) => {
   res.render("upload");
 });
@@ -147,8 +136,6 @@ app.get('/api/upload/email', (req, res) => {
 
 app.post('/api/images', (req, res) => {
   console.log("SERVER CONNECTED")
-<<<<<<< HEAD
-  debugger;
   var file_path = __dirname + '/public/images/users/2' + req.file.filename;
   knex('photos')
     .insert({
@@ -174,10 +161,8 @@ app.post('/api/images', (req, res) => {
 //     .then((results) => {
 //       res.json(results);
 //   });
-=======
-  console.log(req)
-  var img = __dirname + '/public/images/users/:id' + req.file.filename;
->>>>>>> parent of 9280b1a... New migration: add photos table to database, add photos seed file
+  // console.log(req)
+  // var img = __dirname + '/public/images/users/:id' + req.file.filename;
   // console.log(img)
   // fs.rename(req.img.path, img, function(err) {
   //   if (err) {
@@ -191,25 +176,3 @@ app.post('/api/images', (req, res) => {
   //   }
   // });
 });
-
-
->>>>>>> image-react
-// app.get("/ping", (req, res) => {
-//   io.emit("news", "Cool beans");
-//   res.end('OK');
-// });
-
-// app.get("/list", (req, res) => {
-//   res.end(JSON.stringify(Object.keys(io.sockets.sockets)));
-// });
-
-// io.on('connection', (client) => {
-
-//   console.log(`Client ${client.id} has connected`);
-//   client.emit('news', "Hello")
-//   // client.on('media-capabilities', (data) => {
-
-//   // })
-
-//   // client.on('video-start', (cb) => ...)
-// });
