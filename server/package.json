@@ -23,6 +23,7 @@
     "pg": "6.0.2"
   },
   "devDependencies": {
+    "appearin-sdk": "0.0.4",
     "multer": "^1.2.0",
     "nodemon": "^1.9.2"
   }
