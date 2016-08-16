@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Nav from './Nav.jsx';
 import Login from './Login.jsx';
+import $ from 'jquery';
+
 
 const LoginQuestion = React.createClass ({
 

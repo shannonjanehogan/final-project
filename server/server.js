@@ -39,7 +39,7 @@ app.use(function(req, res, next) {
 app.use("/api/users", usersRoutes(knex));
 app.use(express.static('public'));
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
@@ -62,27 +62,56 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/api/images/upload", (req, res) => {
+  console.log("server is connected")
+  console.log(req.query.email)
+  knex('users')
+  .select('id')
+  .where('email', req.query.email)
+  .then((results) => {
+    console.log(results[0].id)
+  let id = results[0].id;
+  upload = multer({ dest: './public/images/users/' + id});
+    res.redirect("http://localhost:4000/upload/" + id);
+
+  });
+});
+
+app.post('/api/images/upload', (req,res) => {
+  console.log("SERVER CONNECTED")
+  console.log(upload, "upload")
+  console.log(req.body)
+
+  knex('photos')
+  .insert({
+    'user_id': req.params.id,
+    'file_path': file_path})
+  .then((results) => {
+    console.log(results)
+ })
+});
+
 
 
 
 // File input field name is simply 'file'
-app.post('/api/images/upload', upload.single('img'), function(req, res) {
-  console.log("SERVER CONNECTED")
-  console.log(req)
-  var img = __dirname + '/public/images/users/:id' + req.file.filename;
-  // console.log(img)
-  // fs.rename(req.img.path, img, function(err) {
-  //   if (err) {
-  //     console.log(err);
-  //     res.send(500);
-  //   } else {
-  //     res.json({
-  //       message: 'File uploaded successfully',
-  //       imgname: req.file.originalName
-  //     });
-  //   }
-  // });
-});
+// app.post('/api/images/upload', upload.single('img'), function(req, res) {
+//   console.log("SERVER CONNECTED")
+//   // console.log("name")
+//   // var img = __dirname + '/public/images/users/:id' + req.file.filename;
+//   // console.log(img)
+//   // fs.rename(req.img.path, img, function(err) {
+//   //   if (err) {
+//   //     console.log(err);
+//   //     res.send(500);
+//   //   } else {
+//   //     res.json({
+//   //       message: 'File uploaded successfully',
+//   //       imgname: req.file.originalName
+//   //     });
+//   //   }
+//   // });
+// });
 
 
 // app.get("/ping", (req, res) => {
