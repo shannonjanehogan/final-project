@@ -51,20 +51,21 @@ const Login = React.createClass ({
     .done(function(data) {
         // let user = {...this.state.user, name: name}
         // this.setState({...this.state, user: user})
+        console.log("this got called")
         let user = Object.assign({}, self.state.user);
         console.log(data);
         user.id = data[0].id;
         self.setState({ user, isLoggedIn: true });
-        self.props._updateUserID(user.id);
         self.props.onSignedIn(user.id);
+        console.log()
     })
     .fail(function(jqXhr) {
       console.log('failed to register');
     });
   },
-  successfulLogin: function () {
-    this.setState({isLoggedIn: true});
-  },
+  // successfulLogin: function () {
+  //   this.setState({isLoggedIn: true});
+  // },
   showStep: function() {
     switch (this.state.step) {
       case 1:

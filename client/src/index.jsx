@@ -17,10 +17,11 @@ import SignupQuestion from './SignupQuestion.jsx';
 import Gab from './Gab.jsx';
 import $ from 'jquery';
 // import ImageUpload from './ImageUpload.jsx';
-import { Router, Route, Link, IndexRoute, hashHistory } from 'react-router';
+import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router';
 
 render((
-  <Router history={hashHistory}>
+  <Router history={browserHistory}>
+    <Route>
       <Route path="/" component={Gab}>
         <IndexRoute component={App} />
       <Route path="/signup" component={Signup}>
@@ -31,6 +32,7 @@ render((
       <Route path="/login" component={Login}>
         <IndexRoute component={LoginEmail} />
       </Route>
+    </Route>
     </Route>
   </Router>
  ), document.getElementById('react-root'));

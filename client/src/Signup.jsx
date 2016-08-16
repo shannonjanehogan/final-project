@@ -30,7 +30,6 @@ const Signup = React.createClass ({
     })
     .done(function(data) {
       console.log("Got data from API: ", data);
-      this.props.onSignedIn(data.id);
     })
     .fail(function(jqXhr) {
       console.log('failed to register');
@@ -53,6 +52,7 @@ const Signup = React.createClass ({
       let user = {...this.state.user, question: question, answer: answer}
       this.setState({...this.state, user: user})
       this.handleQuestionSubmit(user);
+      this.props.onSignedIn(user);
     }.bind(this)()
   },
   nextStep: function() {

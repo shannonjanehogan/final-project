@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from './Nav.jsx'
 import {IndexLink} from 'react-router';
 // Naighty!
-import {hashHistory} from 'react-router';
+import {browserHistory} from 'react-router';
 
 const Gab = React.createClass({
   getInitialState() {
@@ -17,12 +17,11 @@ const Gab = React.createClass({
       }
     });
     // TODO access the appropriate history list
-    hashHistory.push('/');
+    browserHistory.push('/');
   },
   render() {
     return (
       <div>
-        <Nav />
         {this.props.children && React.cloneElement(this.props.children, {
           user: this.state.user,
           onSignedIn: this.onSignedIn

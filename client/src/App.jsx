@@ -16,9 +16,10 @@ import Landing from './LandingPage.jsx';
 
 
 const App = React.createClass ({
-  getInitialState: function() {
-    return {user: {id: 0}, isLoggedIn: false};
-  },
+  // getInitialState: function() {
+  //   return {user: {id: 0},
+  //         onSignedIn: this.onSignedIn};
+  // },
   // componentDidMount() {
   //   console.log("componentDidMount App");
   //   $.get("http://localhost:8080/api/users")
@@ -27,13 +28,13 @@ const App = React.createClass ({
   //     this.setState({user: user, isLoggedIn: true})
   //   }.bind(this));
   // },
-  _updateUserID: function(id) {
-    return function() {
-      debugger;
-      let user = {...this.state.user, id: id}
-      this.setState({...this.state, user: user})
-    }.bind(this)()
-  },
+  // _updateUserID: function(id) {
+  //   return function() {
+  //     debugger;
+  //     let user = {...this.state.user, id: id}
+  //     this.setState({...this.state, user: user})
+  //   }.bind(this)()
+  // },
   render: function() {
     console.log("Rendering <App/>");
     if (this.props.user) {
@@ -41,12 +42,14 @@ const App = React.createClass ({
         <div>
         <Nav/>
         <VideoPanel/>
-        <PhotoPanel photos={user.photos}/>
+        <PhotoPanel photos={this.props.user.photos}/>
         </div>
         );
     } else {
       return (
+        <div>
         <Landing/>
+        </div>
         );
     }
     }

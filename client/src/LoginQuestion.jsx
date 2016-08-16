@@ -20,17 +20,19 @@ const LoginQuestion = React.createClass ({
           className="center questions">
           {this.props.user.question}
         </h2>
-        <form onClick={this.nextStep} onSubmit={this.nextStep}>
+        <form>
           <input
             className="center input"
             type="text"
             id="answer"
             ref="answer"
             placeholder="Type your answer here."
-            defaultValue={this.props.user.answer}
+            // onSubmit={this.nextStep}
+            // defaultValue={this.props.user.answer}
           />
           <Link
             className="button center button-login-submit button-primary"
+            onClick={this.nextStep}
             to="/">Submit
           </Link>
         </form>

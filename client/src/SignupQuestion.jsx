@@ -34,7 +34,7 @@ const SignupQuestion = React.createClass ({
     return (
       <div>
         <h2 className="center questions">Choose a security question.</h2>
-          <form onClick={this.nextStep} onSubmit={this.nextStep}>
+          <form>
             <select id="security-questions" className="center security-questions" >
               <option value="Brand of your first car?">Brand of your first car?</option>
               <option value="Name of your first pet?">Name of your first pet?</option>
@@ -49,6 +49,8 @@ const SignupQuestion = React.createClass ({
               defaultValue={this.props.user.answer} />
             <Link
               className="button center button-login-submit button-primary"
+              onClick={this.nextStep}
+              onSubmit={this.nextStep}
               to="/">Submit</Link>
           </form>
       </div>
