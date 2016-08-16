@@ -14,6 +14,9 @@ const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
+const multer      = require('multer');
+const fs          = require('fs');
+// const router      = express.Router()
 
 function inspect(o, d) {
   console.log(util.inspect(o, { colors: true, depth: d || 1}));
@@ -23,8 +26,45 @@ server.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
+
+
+
+
+
+
+var storage =   multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './uploads');
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.fieldname + '-' + Date.now());
+  }
+});
+var upload = multer({ storage : storage}).single('userPhoto');
+
+app.get('/',function(req,res){
+      res.sendFile(__dirname + "/index.html");
+});
+
+app.post('/api/photo',function(req,res){
+    upload(req,res,function(err) {
+        if(err) {
+            return res.end("Error uploading file.");
+        }
+        res.end("File is uploaded");
+    });
+});
+
+
+
+
 
   // Mount all resource routes
 
@@ -58,6 +98,7 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+<<<<<<< HEAD
 app.post("/api/signup/submit", (req, res) => {
   knex('users')
   .insert({
@@ -89,6 +130,70 @@ app.get("/api/login/submit", (req, res) => {
     });
 });
 
+=======
+app.get("/upload", (req, res) => {
+  res.render("upload");
+});
+
+app.get('/api/upload/email', (req, res) => {
+  knex('users')
+    .select('id')
+    .where('email', req.query.email)
+    .then((results) => {
+      res.json(results);
+  });
+});
+
+
+app.post('/api/images', (req, res) => {
+  console.log("SERVER CONNECTED")
+<<<<<<< HEAD
+  debugger;
+  var file_path = __dirname + '/public/images/users/2' + req.file.filename;
+  knex('photos')
+    .insert({
+      'user_id': req.body.name,
+      'file_path': file_path})
+    .returning("id")
+    .then((results) => {
+      res.json(results);
+  });
+
+
+// File input field name is simply 'file'
+// app.post('/api/images/upload', upload.single('imgBLAH'), (req, res) => {
+//   debugger;
+//   console.log("SERVER CONNECTED")
+//   console.log("req.file.path", req.file)
+//   var file_path = __dirname + '/public/images/users/{id}' + req.file.filename;
+//   knex('photos')
+//     .insert({
+//       'user_id': req.body.name,
+//       'file_path': file_path})
+//     .returning("id")
+//     .then((results) => {
+//       res.json(results);
+//   });
+=======
+  console.log(req)
+  var img = __dirname + '/public/images/users/:id' + req.file.filename;
+>>>>>>> parent of 9280b1a... New migration: add photos table to database, add photos seed file
+  // console.log(img)
+  // fs.rename(req.img.path, img, function(err) {
+  //   if (err) {
+  //     console.log(err);
+  //     res.send(500);
+  //   } else {
+  //     res.json({
+  //       message: 'File uploaded successfully',
+  //       imgname: req.file.originalName
+  //     });
+  //   }
+  // });
+});
+
+
+>>>>>>> image-react
 // app.get("/ping", (req, res) => {
 //   io.emit("news", "Cool beans");
 //   res.end('OK');

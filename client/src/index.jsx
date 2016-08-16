@@ -3,6 +3,8 @@ require("../styles/application.scss");
 // Render the top-level React component
 import React from 'react';
 import { render } from 'react-dom';
+import Dropzone from 'react-dropzone';
+import Request from 'superagent';
 import App from './App.jsx';
 import VideoPanel from './VideoPanel.jsx';
 import PhotoPanel from './PhotoPanel.jsx';
@@ -22,6 +24,7 @@ import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router';
 render((
   <Router history={browserHistory}>
     <Route>
+      <Route path="/upload" component={ImageUpload}/>
       <Route path="/" component={Gab}>
         <IndexRoute component={App} />
       <Route path="/signup" component={Signup}>
@@ -35,5 +38,6 @@ render((
     </Route>
     </Route>
   </Router>
+
  ), document.getElementById('react-root'));
 

@@ -12,17 +12,6 @@ const defaultOption = options[0]
 
 const SignupQuestion = React.createClass ({
 
-  // onQuestionSubmit: function (e) {
-  //   e.preventDefault();
-
-  //   // if (!question) {
-  //   //   return;
-  //   // }
-  //   this.props.onQuestionSubmit(question);
-  //   // this.refs.answer.value = '';
-  //   return;
-  // },
-
   nextStep: function (e) {
     e.preventDefault();
     let question = document.getElementById("security-questions").value;
