@@ -19,7 +19,7 @@ const VideoPanel = React.createClass({
     return (
       <div className="video-panel">
         <iframe id="appearin-video"></iframe>
-        <p> appear.in/{room} </p>
+          <p> appear.in/{room} </p>
       </div>
     );
   }
