@@ -1,26 +1,32 @@
 import React, {Component} from 'react';
 import Signup from './Signup.jsx';
+import App from './App.jsx';
 
 const SignupEmail = React.createClass ({
 
-  onEmailSubmit: function (e) {
-    e.preventDefault();
-    var email = this.refs.email.value.trim();
-    if (!email) {
-      return;
-    }
-    this.props.onEmailSubmit(email);
-    this.refs.email.value = '';
-    return;
+  nextStep: function(e) {
+    e.preventDefault()
+    this.props.saveEmailValue(this.refs.email.value,)
+    this.props.nextStep()
   },
 
   render: function() {
     return (
       <div>
         <h2 className="center questions">Hi! What's your email?</h2>
-        <form onEmailSubmit={this.onEmailSubmit}>
-          <input className="center input" type="email" placeholder="Type your email here." />
-          <input className="center button-login-submit button-primary" type="submit" value="Submit" />
+        <form >
+          <input
+            className="center input"
+            type="email"
+            ref="email"
+            placeholder="Type your email here."
+            defaultValue={this.props.user.email}/>
+          <input
+            className="center button-login-submit button-primary"
+            type="submit"
+            value="Submit"
+            onClick={this.nextStep}
+            onSubmit={this.nextStep} />
         </form>
       </div>
     );

@@ -1,36 +1,40 @@
 import React, {Component} from 'react';
 import Nav from './Nav.jsx';
 import Login from './Login.jsx';
+import {Link} from 'react-router';
+import Gab from './Gab.jsx';
 
 const LoginQuestion = React.createClass ({
 
-  getInitialState: function() {
-    return {
-      isLoggedIn: false
-    };
-  },
-
-  onAnswerLogin: function (e) {
-    e.preventDefault();
-    var answer = this.refs.answer.value.trim();
-    if (!answer) {
-      return;
+  nextStep: function(e) {
+    e.preventDefault()
+    let data = {
+      answer: this.refs.answer.value.trim(),
     }
-    this.props.onAnswerLogin(answer);
-    this.refs.answer.value = '';
-    return;
+    this.props.validateQuestionLogin(data)
   },
-  onLoggedin: function () {
-    this.setState({isLoggedIn: true});
-  },
-
   render: function() {
     return (
       <div>
-        <h2 className="center questions"> {this.props.user.answer} </h2>
-        <form onAnswerLogin={this.onAnswerLogin} onLoggedin={this.onLoggedin}>
-          <input className="center input" type="text" placeholder="Type your answer here." />
-          <input className="center button-login-submit button-primary" type="submit" value="Submit" />
+        <h2
+          className="center questions">
+          {this.props.user.question}
+        </h2>
+        <form>
+          <input
+            className="center input"
+            type="text"
+            id="answer"
+            ref="answer"
+            placeholder="Type your answer here."
+            // onSubmit={this.nextStep}
+            // defaultValue={this.props.user.answer}
+          />
+          <Link
+            className="button center button-login-submit button-primary"
+            onClick={this.nextStep}
+            to="/">Submit
+          </Link>
         </form>
       </div>
     );

@@ -2,34 +2,88 @@ import React, {Component} from 'react';
 import LoginEmail from './LoginEmail.jsx';
 import LoginQuestion from './LoginQuestion.jsx';
 import Nav from './Nav.jsx';
+import App from './App.jsx';
+import Gab from './Gab.jsx';
+import $ from 'jquery';
 
 const Login = React.createClass ({
   getInitialState: function () {
-    return {
-      isLoggedIn: false
+     return {
+      step: 1,
+      isLoggedIn: false,
+      user: {
+        name: '',
+        question: '',
+        id: ''
+      }
     };
   },
-  handleEmailLogin: function (email) {
-    this.setState({user: {email: email}});
+  nextStep: function() {
+    this.setState({
+      step : this.state.step + 1
+    })
   },
-  handleQuestionLogin: function (question, answer) {
-    this.setState({user: {question: question, answer: answer}});
+  validateEmailLogin: function(email) {
+    let self = this;
+    $.ajax({
+      type: 'GET',
+      url: 'http://localhost:8080/api/login/email',
+      dataType: "json",
+      data: email
+    })
+    .done(function(data){
+      let user = Object.assign({}, self.state.user);
+      user.name = data[0].name;
+      user.question = data[0].security_question;
+      self.setState({ user, step: 2 });
+    })
+    .fail(function(jqXhr) {
+      console.log('failed to register');
+    });
   },
-  handleSuccessfulLogin: function () {
-    this.setState({isLoggedIn: true});
+  validateQuestionLogin: function(answer) {
+    let self = this;
+    $.ajax({
+      type: 'GET',
+      url: 'http://localhost:8080/api/login/submit',
+      data: answer
+    })
+    .done(function(data) {
+        // let user = {...this.state.user, name: name}
+        // this.setState({...this.state, user: user})
+        console.log("this got called")
+        let user = Object.assign({}, self.state.user);
+        console.log(data);
+        user.id = data[0].id;
+        self.setState({ user, isLoggedIn: true });
+        self.props.onSignedIn(user.id);
+        console.log()
+    })
+    .fail(function(jqXhr) {
+      console.log('failed to register');
+    });
+  },
+  // successfulLogin: function () {
+  //   this.setState({isLoggedIn: true});
+  // },
+  showStep: function() {
+    switch (this.state.step) {
+      case 1:
+        return <LoginEmail user={this.state.user}
+                            validateEmailLogin={this.validateEmailLogin.bind(this)}
+                            nextStep={this.nextStep} />
+      case 2:
+        return <LoginQuestion user={this.state.user}
+                             validateQuestionLogin={this.validateQuestionLogin.bind(this)}
+                              />
+    }
   },
   render() {
     console.log("Rendering <Login/>");
     return (
-
       <div className="login-body">
         <Nav/>
-        <LoginEmail email={this.state.user.email} onEmailLogin={this.handleEmailLogin}/>
-        <LoginQuestion
-            answer={this.state.user.answer}
-            question={this.state.user.question}
-            onQuestionLogin={this.handleQuestionLogin}
-            onLoggedIn={this.handleSuccessfulLogin}/>
+        {this.showStep()}
       </div>
 
     );

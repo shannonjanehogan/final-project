@@ -1,15 +1,14 @@
 require("../styles/application.scss");
 
-// require("../../server/public/scripts/app.js");
-
 // Render the top-level React component
 import React from 'react';
 import { render } from 'react-dom';
-// import ReactDOM from 'react-dom';
+import Dropzone from 'react-dropzone';
+import Request from 'superagent';
 import App from './App.jsx';
-// import VideoPanel from './VideoPanel.jsx';
-// import PhotoPanel from './PhotoPanel.jsx';
-// import Photo from './Photo.jsx';
+import VideoPanel from './VideoPanel.jsx';
+import PhotoPanel from './PhotoPanel.jsx';
+import Photo from './Photo.jsx';
 import Login from './Login.jsx';
 import LoginEmail from './LoginEmail.jsx';
 import LoginQuestion from './LoginQuestion.jsx';
@@ -17,38 +16,28 @@ import Signup from './Signup.jsx';
 import SignupEmail from './SignupEmail.jsx';
 import SignupName from './SignupName.jsx';
 import SignupQuestion from './SignupQuestion.jsx';
-// import SignupQuestion from './LoginName.jsx';
-import { Router, Route, Link, browserHistory } from 'react-router';
+import Gab from './Gab.jsx';
+import $ from 'jquery';
+import ImageUpload from './ImageUpload.jsx';
+import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router';
 
 render((
   <Router history={browserHistory}>
-  <Route path="/" component={App}/>
     <Route>
+      <Route path="/upload" component={ImageUpload}/>
+      <Route path="/" component={Gab}>
+        <IndexRoute component={App} />
       <Route path="/signup" component={Signup}>
-        <Route path="/signup/name" component={SignupName} />
-        <Route path="/signup/email" component={SignupEmail} />
-        <Route path="/signup/question" component={SignupQuestion} />
+        <IndexRoute component={SignupName} />
+        <Route path="/signup" component={SignupName} />
       </Route>
+
       <Route path="/login" component={Login}>
-        <Route path="/login/email" component={LoginEmail} />
-        <Route path="/login/question" component={LoginQuestion} />
-      </Route>
-      <Route path="/user/:user_id/video" component={App}>
-        <Route path="/user/:user_id/video/" component={App}/>
-        <Route path="/user/:user_id/video" component={App}/>
-        <Route path="/user/:user_id/video" component={App}/>
+        <IndexRoute component={LoginEmail} />
       </Route>
     </Route>
+    </Route>
   </Router>
- ),document.getElementById('react-root'));
 
-
-// render((
-//   <Router history={browserHistory}>
-//     <Route path="/photoPanel/:photoPanelId" component={Users}/>   /* this.props.params.photoPanelId  is equal to the id in the route */
-//     <Route path="/user/:userId" component={User}/>
-//   </Router>
-// ), document.getElementById('root'))
-
-
+ ), document.getElementById('react-root'));
 

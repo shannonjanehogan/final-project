@@ -1,26 +1,32 @@
 import React, {Component} from 'react';
 import Signup from './Signup.jsx';
+import App from './App.jsx';
 
 const SignupName = React.createClass ({
 
-  onNameSubmit: function (e) {
-    e.preventDefault();
-    var name = this.refs.name.value.trim();
-    if (!name) {
-      return;
-    }
-    this.props.onNameSubmit(name);
-    this.refs.name.value = '';
-    return;
+  nextStep: function(e) {
+    e.preventDefault()
+    this.props.saveNameValue(this.refs.name.value)
+    this.props.nextStep()
   },
 
   render: function() {
     return (
       <div>
         <h2 className="center questions">Hi! What's your name?</h2>
-        <form onNameSubmit={this.onNameSubmit}>
-          <input className="center input" type="text" placeholder="Type your name here." />
-          <input className="center button-login-submit button-primary" type="submit" value="Submit" />
+        <form>
+          <input
+            className="center input"
+            type="text"
+            ref="name"
+            placeholder="Type your name here."
+            defaultValue={this.props.user.name}/>
+          <input
+            className="center button-login-submit button-primary"
+            type="submit"
+            value="Submit"
+            onClick={this.nextStep}
+            onSubmit={this.nextStep}/>
         </form>
       </div>
     );
@@ -28,12 +34,3 @@ const SignupName = React.createClass ({
 });
 
 export default SignupName;
-
-  // <div>
-  //     <h2 class="center questions">Hi! What's your email?</h2>
-  //     <form>
-  //       <input class="center input" type="email" placeholder="Type your email here." />
-  //       <input class="center button-login-submit button-primary" type="submit" value="Submit" />
-  //     </form>
-  // </div>
-
