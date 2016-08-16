@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Login from './Login';
-import Signup from './Signup';
+import Login from './Login.jsx';
+import Signup from './Signup.jsx';
 
 const Landing = React.createClass ({
   render() {

@@ -3,7 +3,7 @@ import LoginEmail from './LoginEmail.jsx';
 import LoginQuestion from './LoginQuestion.jsx';
 import Nav from './Nav.jsx';
 import App from './App.jsx';
-import Gab from '.Gab.jsx';
+import Gab from './Gab.jsx';
 import $ from 'jquery';
 
 const Login = React.createClass ({
