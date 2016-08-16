@@ -32,12 +32,19 @@ const Login = React.createClass ({
       data: email
     })
     .done(function(data){
-      let user = Object.assign({}, self.state.user);
-      user.name = data[0].name;
-      user.question = data[0].security_question;
-      self.setState({ user, step: 2 });
+      if (data == "") {
+        alert("Sorry! We don't have this email on file. Please try another one")
+        return false
+      } else {
+        let user = Object.assign({}, self.state.user);
+        user.name = data[0].name;
+        user.question = data[0].security_question;
+        self.setState({ user, step: 2 });
+        return true
+      }
     })
-    .fail(function(jqXhr) {
+    .fail(function() {
+      alert("We don't have this email on file!")
       console.log('failed to register');
     });
   },
@@ -49,6 +56,11 @@ const Login = React.createClass ({
       data: answer
     })
     .done(function(data) {
+      if (data == "") {
+        alert("Wrong answer")
+      } else {
+      console.log(data, "answer")
+      return function() {
         // let user = {...this.state.user, name: name}
         // this.setState({...this.state, user: user})
         console.log("this got called")
@@ -57,7 +69,8 @@ const Login = React.createClass ({
         user.id = data[0].id;
         self.setState({ user, isLoggedIn: true });
         self.props.onSignedIn(user.id);
-        console.log()
+      }
+      }
     })
     .fail(function(jqXhr) {
       console.log('failed to register');

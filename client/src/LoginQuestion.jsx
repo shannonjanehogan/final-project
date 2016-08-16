@@ -6,13 +6,29 @@ import Gab from './Gab.jsx';
 
 const LoginQuestion = React.createClass ({
 
+
+  validateAnswer: function() {
+    var x = document.answerForm.inputAnswer.value;
+    if ( x == null || x == "")
+    {
+      alert("You have entered an invalid answer!")
+      return false
+    } else {
+        return true
+      }
+  },
+
   nextStep: function(e) {
     e.preventDefault()
+    if (this.validateAnswer()) {
     let data = {
       answer: this.refs.answer.value.trim(),
     }
     this.props.validateQuestionLogin(data)
+    }
   },
+
+
   render: function() {
     return (
       <div>
@@ -20,8 +36,9 @@ const LoginQuestion = React.createClass ({
           className="center questions">
           {this.props.user.question}
         </h2>
-        <form>
+        <form name="answerForm">
           <input
+            name="inputAnswer"
             className="center input"
             type="text"
             id="answer"
@@ -31,6 +48,7 @@ const LoginQuestion = React.createClass ({
             // defaultValue={this.props.user.answer}
           />
           <Link
+            onSubmit={this.nextStep}
             className="button center button-login-submit button-primary"
             onClick={this.nextStep}
             to="/">Submit

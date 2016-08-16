@@ -3,9 +3,15 @@
   top: 0;
   height: 80px;
   width: 100%;
-  background-color: rgba(151,186,209,0.7);
-  padding: 0 2em;
+  background-color: #9abb90;
   display:block;
+}
+
+#nav-bar a {
+  text-decoration: none;
+  cursor: auto;
+  color: white;
+
 }
 
 #nav-bar .logo {
@@ -24,8 +30,7 @@
   position: absolute;
   height: 50%;
   width: 100%;
-  background-color: rgba(151,186,209,0.7);
-  padding: 0 2em;
+  background-color: #9abb90;
   display:block;
 }
 
@@ -42,12 +47,12 @@
 }
 
 #welcome-nav-bar .description {
-  font-size: 1em;
+  font-size: 14pt;
   font-family: Lato, san-serif;
   font-weight: 900;
   color: white;
   position: absolute;
-  top: 45%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
