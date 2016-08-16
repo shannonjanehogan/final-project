@@ -4,6 +4,9 @@ import ReactDOMServer from 'react-dom/server';
 import Dropzone from 'react-dropzone';
 import Request from 'superagent';
 import $ from 'jquery';
+import { browserHistory } from 'react-router'
+
+
 
 var ImageEmail = React.createClass({
     getInitialState: function() {
@@ -40,6 +43,9 @@ var ImageEmail = React.createClass({
       data: email
     })
     .done(function(data){
+      browserHistory.push('/upload/' + data.user_id)
+
+
       console.log("It works")
     })
     .fail(function(jqXhr) {
