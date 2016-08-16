@@ -4,6 +4,7 @@ import SignupEmail from './SignupEmail.jsx';
 import SignupQuestion from './SignupQuestion.jsx';
 import Nav from './Nav.jsx';
 import App from './App.jsx';
+import Gab from './Gab.jsx';
 import $ from 'jquery';
 
 const Signup = React.createClass ({
@@ -29,6 +30,7 @@ const Signup = React.createClass ({
     })
     .done(function(data) {
       console.log("Got data from API: ", data);
+      this.props.onSignedIn(data.id);
     })
     .fail(function(jqXhr) {
       console.log('failed to register');

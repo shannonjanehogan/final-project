@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Nav from './Nav.jsx';
 import Login from './Login.jsx';
 import {Link} from 'react-router';
+import Gab from './Gab.jsx';
 
 const LoginQuestion = React.createClass ({
 

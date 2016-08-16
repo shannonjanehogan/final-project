@@ -3,6 +3,7 @@ import LoginEmail from './LoginEmail.jsx';
 import LoginQuestion from './LoginQuestion.jsx';
 import Nav from './Nav.jsx';
 import App from './App.jsx';
+import Gab from '.Gab.jsx';
 import $ from 'jquery';
 
 const Login = React.createClass ({
@@ -55,6 +56,7 @@ const Login = React.createClass ({
         user.id = data[0].id;
         self.setState({ user, isLoggedIn: true });
         self.props._updateUserID(user.id);
+        self.props.onSignedIn(user.id);
     })
     .fail(function(jqXhr) {
       console.log('failed to register');
