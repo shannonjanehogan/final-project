@@ -10,16 +10,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.14.0",
-    "socket.io": "^1.4.8",
-    "node-sass-middleware": "^0.9.8",
     "body-parser": "^1.15.2",
     "dotenv": "^2.0.0",
     "ejs": "^2.4.1",
+    "express": "^4.14.0",
     "knex": "^0.11.7",
     "knex-logger": "^0.1.0",
     "morgan": "^1.7.0",
-    "pg": "6.0.2"
+    "node-sass-middleware": "^0.9.8",
+    "node-static": "^0.7.8",
+    "pg": "6.0.2",
+    "socket.io": "^1.4.8"
   },
   "devDependencies": {
     "nodemon": "^1.9.2"
