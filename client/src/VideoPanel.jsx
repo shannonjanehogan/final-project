@@ -1,17 +1,19 @@
 import React, {Component} from 'react';
 import AppearIn from 'appearin-sdk';
 
-let appearin = new AppearIn();
-let room;
-
-appearin.getRandomRoomName().then(function (roomName) {
-  appearin.addRoomToIframe(document.getElementById("appearin-video"), roomName);
-  room = roomName
-  return room
-});
-
-
 const VideoPanel = React.createClass({
+
+  componentDidMount() {
+    const appearin = new AppearIn();
+
+    appearin.getRandomRoomName().then(function (roomName) {
+      let room;
+      appearin.addRoomToIframe(document.getElementById("appearin-video"), roomName);
+      room = roomName
+      return room
+    });
+  },
+
   render() {
     console.log("Rendering <VideoPanel/>");
     return (

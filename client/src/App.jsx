@@ -14,8 +14,6 @@ import SignupName from './SignupName.jsx';
 import SignupQuestion from './SignupQuestion.jsx';
 import Landing from './LandingPage.jsx';
 
-
-
 const App = React.createClass ({
 
   render: function() {
