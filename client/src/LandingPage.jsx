@@ -8,17 +8,17 @@ const Landing = React.createClass ({
     return (
       <div>
         <nav id="welcome-nav-bar">
-      <p class="intro"> Welcome to our app. </p>
-      <p class="description"> OUR APP is a Lighthouse Labs final project designed to encourage seniors to connect with their loved ones through intuitive and minimal user interface. </p>
-      <p class="instruction"> To begin, choose one of the options below. </p>
+      <p className="intro"> Welcome to our app. </p>
+      <p className="description"> OUR APP is a Lighthouse Labs final project designed to encourage seniors to connect with their loved ones through intuitive and minimal user interface. </p>
+      <p className="instruction"> To begin, choose one of the options below. </p>
     </nav>
 
-    <div class="new-user">
-      <button class="button-user button-primary">I'm a new user</button>
+    <div className="new-user">
+      <button className="button-user button-primary">I'm a new user</button>
     </div>
 
-    <div class="returning-user">
-      <button class="button-user  button-primary">I'm a returning user</button>
+    <div className="returning-user">
+      <button className="button-user  button-primary">I'm a returning user</button>
     </div>
       </div>
 
