@@ -7,7 +7,8 @@ import Request from 'superagent';
 var ImageUpload = React.createClass({
 
     onDrop: function(files){
-        var req = Request.post('http://localhost:8080/api/images/upload');
+      var id = +window.location.pathname.split('/')[2]
+        var req = Request.post('http://localhost:8080/api/images/upload/' + id);
         files.forEach((file)=> {
           req.attach("img", file);
         });

@@ -28,7 +28,6 @@ server.listen(PORT, () => {
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 
-var upload = multer({ dest: './public/images/users/:id'});
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -71,24 +70,25 @@ app.get("/api/images/upload", (req, res) => {
   .then((results) => {
     console.log(results[0].id)
   let id = results[0].id;
-  upload = multer({ dest: './public/images/users/' + id});
     res.redirect("http://localhost:4000/upload/" + id);
 
   });
 });
 
-app.post('/api/images/upload', (req,res) => {
+app.post('/api/images/upload/:id',  (req,res) => {
+  var upload = multer({ dest: './public/images/users/bob' + req.params.id});
+  upload.single('img')
   console.log("SERVER CONNECTED")
   console.log(upload, "upload")
   console.log(req.body)
 
-  knex('photos')
-  .insert({
-    'user_id': req.params.id,
-    'file_path': file_path})
-  .then((results) => {
-    console.log(results)
- })
+ //  knex('photos')
+ //  .insert({
+ //    'user_id': req.params.id,
+ //    'file_path': file_path})
+ //  .then((results) => {
+ //    console.log(results)
+ // })
 });
 
 
