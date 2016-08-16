@@ -20,12 +20,13 @@ const LoginQuestion = React.createClass ({
 
   nextStep: function(e) {
     e.preventDefault()
-    if (this.validateAnswer()) {
+    // if (this.validateAnswer()) {
     let data = {
       answer: this.refs.answer.value.trim(),
     }
     this.props.validateQuestionLogin(data)
-    }
+
+    // }
   },
 
 
@@ -48,9 +49,9 @@ const LoginQuestion = React.createClass ({
             // defaultValue={this.props.user.answer}
           />
           <Link
-            onSubmit={this.nextStep}
             className="button center button-login-submit button-primary"
             onClick={this.nextStep}
+            onSubmit={this.nextStep}
             to="/">Submit
           </Link>
         </form>
