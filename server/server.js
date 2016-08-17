@@ -145,15 +145,15 @@ app.post('/api/images/upload/:id',  (req, res) => {
     });
 });
 
-app.get('/api/user/:id/images'), (req, res) => {
-  debugger;
+app.get('/api/user/:id/images', (req, res) => {
   knex('photos')
     .select('file_path')
     .where('user_id', req.params.id)
     .then((results) => {
+      console.log("results", results);
       res.json(results);
   });
-};
+});
 
 app.get("/api/login/submit", (req, res) => {
    knex('users')

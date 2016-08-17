@@ -12,7 +12,6 @@ const PhotoPanel = React.createClass({
         $.ajax({
           type: 'GET',
           url: 'http://localhost:8080/api/user/' + id + '/images',
-          dataType: "json"
         })
         .done(function(photosPath){
           if (photosPath == "") {
@@ -22,7 +21,7 @@ const PhotoPanel = React.createClass({
           }
         })
         .fail(function() {
-          alert("We don't have this email on file!")
+          alert("Request not completed!")
           console.log('failed to register');
         });
       }
