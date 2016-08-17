@@ -26,13 +26,11 @@ server.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
 
-<<<<<<< HEAD
-=======
+
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 
 
->>>>>>> image-download
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -96,7 +94,6 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-<<<<<<< HEAD
 app.post("/api/signup/submit", (req, res) => {
   knex('users')
   .insert({
@@ -118,7 +115,6 @@ app.get("/api/login/email", (req, res) => {
     res.json(results);
   });
 });
-=======
 app.get("/api/images/upload", (req, res) => {
   console.log("server is connected")
   console.log(req.query.email)
@@ -151,7 +147,6 @@ app.post('/api/images/upload/:id',  (req,res) => {
  // })
 });
 
->>>>>>> image-download
 
 app.get("/api/login/submit", (req, res) => {
    knex('users')
@@ -166,60 +161,7 @@ app.get("/upload", (req, res) => {
   res.render("upload");
 });
 
-<<<<<<< HEAD
-app.get('/api/upload/email', (req, res) => {
-  knex('users')
-    .select('id')
-    .where('email', req.query.email)
-    .then((results) => {
-      res.json(results);
-  });
-});
 
-
-app.post('/api/images', (req, res) => {
-  console.log("SERVER CONNECTED")
-  var file_path = __dirname + '/public/images/users/2' + req.file.filename;
-  knex('photos')
-    .insert({
-      'user_id': req.body.name,
-      'file_path': file_path})
-    .returning("id")
-    .then((results) => {
-      res.json(results);
-  });
-
-
-// File input field name is simply 'file'
-// app.post('/api/images/upload', upload.single('imgBLAH'), (req, res) => {
-//   debugger;
-//   console.log("SERVER CONNECTED")
-//   console.log("req.file.path", req.file)
-//   var file_path = __dirname + '/public/images/users/{id}' + req.file.filename;
-//   knex('photos')
-//     .insert({
-//       'user_id': req.body.name,
-//       'file_path': file_path})
-//     .returning("id")
-//     .then((results) => {
-//       res.json(results);
-//   });
-  // console.log(req)
-  // var img = __dirname + '/public/images/users/:id' + req.file.filename;
-  // console.log(img)
-  // fs.rename(req.img.path, img, function(err) {
-  //   if (err) {
-  //     console.log(err);
-  //     res.send(500);
-  //   } else {
-  //     res.json({
-  //       message: 'File uploaded successfully',
-  //       imgname: req.file.originalName
-  //     });
-  //   }
-  // });
-});
-=======
 // File input field name is simply 'file'
 // app.post('/api/images/upload', upload.single('img'), function(req, res) {
 //   console.log("SERVER CONNECTED")
@@ -261,4 +203,4 @@ app.post('/api/images', (req, res) => {
 
 //   // client.on('video-start', (cb) => ...)
 // });
->>>>>>> image-download
+
