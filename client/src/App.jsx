@@ -23,7 +23,7 @@ const App = React.createClass ({
         <div>
         <Nav/>
         <VideoPanel/>
-        <PhotoPanel photos={this.props.user.photos}/>
+        <PhotoPanel id={this.props.user.id}/>
         </div>
         );
     } else {
