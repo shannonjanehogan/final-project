@@ -129,19 +129,58 @@ app.get("/api/images/upload", (req, res) => {
   });
 });
 
-app.post('/api/images/upload/:id',  (req, res) => {
-  var upload = multer({ dest: './public/images/users/' + req.params.id});
+// app.post('/api/images/upload/:id',  (req, res) => {
+//   var upload = multer({ dest: './public/images/users/' + req.params.id});
+//   upload.single('img')(req,res,function(){})
+//   console.log("SERVER CONNECTED")
+//   console.log("file", req.filename)
+//   res.status(201).end()
+//   knex('photos')
+//     .insert({
+//       'user_id': req.params.id,
+//       'file_path': '../server/public/images/users/' + req.params.id + '/'})
+//     .then((results) => {
+//       console.log("results", results)
+//       console.log("req.file", req.file)
+//     });
+// });
+
+// Multer storage options
+// var storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, './public/images/users/1')
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, file.originalname + '-' + Date.now() + '.jpg')
+//     }
+// });
+// var upload = multer({ storage: storage });
+
+// app.post('/multer', upload.single('file'), function (req, res) {
+//    // Need full filename created here
+// });
+
+app.post('/api/images/upload/:id', (req, res) => {
+  var storage = multer.diskStorage({
+    destination: function (req, img, cb) {
+        cb(null, './public/images/users/' + req.params.id)
+    },
+    imgname: function (req, img, cb) {
+        cb(null, img.originalname + '-' + Date.now() + '.jpg')
+    }
+  });
+  var upload = multer({ storage: storage });
   upload.single('img')(req,res,function(){})
   console.log("SERVER CONNECTED")
-  console.log(upload, "upload")
-  console.log(req.body)
-  res.status(201).end()
+  console.log("resimg", req.img)
+  res.status(200).end()
   knex('photos')
     .insert({
       'user_id': req.params.id,
-      'file_path': './public/images/users/' + req.params.id})
+      'file_path': '../server/public/images/users/' + req.params.id + '/' + req.img.imgname })
     .then((results) => {
-      console.log(results)
+      console.log("results", results)
+      console.log("req.file", req.file)
     });
 });
 

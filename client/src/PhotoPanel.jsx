@@ -7,6 +7,20 @@ const PhotoPanel = React.createClass({
     let self = this;
 
     if (self.isMounted()) {
+      function renderPhotos(photosPath) {
+        console.log("hit renderPhotos");
+        console.log("photosPath", photosPath);
+        photosPath.forEach(function(photoPath) {
+          createPhotoElement(photoPath).appendTo("sidebar-image-gallery");
+        });
+      }
+      function createPhotoElement(photoPath) {
+         console.log("createPhotoElement");
+        console.log("photoPath", photoPath);
+        return $(
+          `<img src=${photoPath} width="206" height="206" alt="" />`
+          );
+      }
       function fetchUserPhotos () {
         let id = self.props.id;
         $.ajax({
@@ -27,16 +41,6 @@ const PhotoPanel = React.createClass({
       }
       fetchUserPhotos();
     }
-  },
-  renderPhotos: function(photosPath) {
-    photosPath.forEach(function(photoPath) {
-      createPhotoElement(photoPath).appendTo("sidebar-image-gallery");
-    });
-  },
-  createPhotoElement: function(photoPath) {
-    return $(
-      `<img src=${photoPath} width="206" height="206" alt="" />`
-      );
   },
   render() {
     console.log("Rendering <PhotoPanel/>");
