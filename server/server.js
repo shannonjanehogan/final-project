@@ -23,14 +23,7 @@ function inspect(o, d) {
   console.log(util.inspect(o, { colors: true, depth: d || 1}));
 }
 
-<<<<<<< HEAD
-
 app.use(cookieParser());
-=======
-server.listen(PORT, () => {
-  console.log("Example app listening on port " + PORT);
-});
->>>>>>> 5b27586f12fed594fe988d0922dbab9744a52858
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -96,7 +89,7 @@ app.use(knexLogger(knex));
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", {user_id: req.cookies["user_id"]});
 });
 
 app.post("/api/signup/submit", (req, res) => {
@@ -109,6 +102,8 @@ app.post("/api/signup/submit", (req, res) => {
     'security_answer': req.body.answer})
   .returning("id")
   .then((results) => {
+    let user_id = results[0].id;
+    res.cookie("user_id", user_id);
     res.json(results);
   });
 });
@@ -121,6 +116,7 @@ app.get("/api/login/email", (req, res) => {
     res.json(results);
   });
 });
+
 app.get("/api/images/upload", (req, res) => {
   console.log("server is connected")
   console.log(req.query.email)
@@ -129,7 +125,8 @@ app.get("/api/images/upload", (req, res) => {
   .where('email', req.query.email)
   .then((results) => {
     console.log(results[0].id)
-  let id = results[0].id;
+    let id = results[0].id;
+    res.cookie("id", id);
     res.json({
       user_id: id
     });
