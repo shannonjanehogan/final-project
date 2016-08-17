@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express     = require('express');
+const cookieParser = require('cookie-parser');
 const ENV         = process.env.ENV || 'development';
 const PORT        = process.env.PORT || 8080;
 const app         = express();
@@ -27,6 +28,7 @@ server.listen(PORT, () => {
 });
 
 
+app.use(cookieParser());
 
 
 app.use(function(req, res, next) {
@@ -199,6 +201,8 @@ app.get("/api/login/submit", (req, res) => {
     .select('id')
     .where('security_answer', req.query.answer)
     .then((results) => {
+      let user_id = results[0].id;
+      res.cookie("user_id", user_id);
       res.json(results);
     });
 });
