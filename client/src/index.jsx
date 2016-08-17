@@ -5,6 +5,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import Dropzone from 'react-dropzone';
 import Request from 'superagent';
+import ReactDOM from 'react-dom';
 import App from './App.jsx';
 import VideoPanel from './VideoPanel.jsx';
 import PhotoPanel from './PhotoPanel.jsx';
@@ -18,15 +19,18 @@ import SignupName from './SignupName.jsx';
 import SignupQuestion from './SignupQuestion.jsx';
 import Gab from './Gab.jsx';
 import $ from 'jquery';
+
+// import SignupQuestion from './LoginName.jsx';
+import ImageEmail from './ImageEmail.jsx';
 import ImageUpload from './ImageUpload.jsx';
 import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router';
 
 render((
   <Router history={browserHistory}>
     <Route>
-      <Route path="/upload" component={ImageUpload}/>
-      <Route path="/" component={Gab}>
-        <IndexRoute component={App} />
+  <Route path="/upload" component={ImageEmail}/>
+  <Route path="/upload/:id" component={ImageUpload}/>
+  <Route path="/" component={App}/>
       <Route path="/signup" component={Signup}>
         <IndexRoute component={SignupName} />
         <Route path="/signup" component={SignupName} />
