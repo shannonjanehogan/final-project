@@ -26,9 +26,6 @@ server.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
 
-
-
-
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -135,7 +132,7 @@ app.post('/api/images/upload/:id', (req, res) => {
     knex('photos')
     .insert({
       'user_id': req.params.id,
-      'file_path': '../server/public/images/users/' + req.params.id + '/' + req.file.filename})
+      'file_path': '/images/users/' + req.params.id + '/' + req.file.filename})
     .then((results) => {
       console.log("results", results)
       console.log("req.file", req.file)

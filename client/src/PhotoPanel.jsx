@@ -11,15 +11,15 @@ const PhotoPanel = React.createClass({
         console.log("hit renderPhotos");
         console.log("photosPath", photosPath);
         photosPath.forEach(function(photoPath) {
-          createPhotoElement(photoPath).appendTo("sidebar-image-gallery");
+          createPhotoElement(photoPath).appendTo(".sidebar-image-gallery");
         });
       }
       function createPhotoElement(photoPath) {
          console.log("createPhotoElement");
         console.log("photoPath", photoPath);
         return $(
-          `<img src=${photoPath} width="206" height="206" alt="" />`
-          );
+          `<img src="//localhost:8080${photoPath.file_path}" width="206" height="206" alt="" />`
+        );
       }
       function fetchUserPhotos () {
         let id = self.props.id;
@@ -28,7 +28,7 @@ const PhotoPanel = React.createClass({
           url: 'http://localhost:8080/api/user/' + id + '/images',
         })
         .done(function(photosPath){
-          if (photosPath == "") {
+          if (photosPath.length === 0) {
             console.log("hi")
           } else {
            renderPhotos(photosPath);
@@ -47,7 +47,7 @@ const PhotoPanel = React.createClass({
     return (
       <div className="photo-panel">
         <div className="sidebar-image-gallery">
-          <img src="http://placekitten.com/300/300" width="206" height="206" alt=""/>
+          <img src="../images/users/1/f8b5db988e0dc9af680c964a166a1b0d.jpg" width="206" height="206" alt=""/>
           <img src="http://placekitten.com/300/300" width="206" height="206" alt=""/>
           <img src="http://placekitten.com/300/300" width="206" height="206" alt=""/>
           <img src="http://placekitten.com/300/300" width="206" height="206" alt=""/>
