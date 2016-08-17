@@ -31,6 +31,7 @@ const SignupName = React.createClass ({
         <h2 className="center questions">Hi! What's your name?</h2>
         <form name="nameForm">
           <input
+            autoFocus
             name="inputName"
             className="center input"
             type="text"
