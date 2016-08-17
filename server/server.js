@@ -26,6 +26,9 @@ server.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
 
+
+
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -68,7 +71,7 @@ app.use(function(req, res, next) {
 app.use("/api/users", usersRoutes(knex));
 app.use(express.static('public'));
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
@@ -110,6 +113,38 @@ app.get("/api/login/email", (req, res) => {
     res.json(results);
   });
 });
+app.get("/api/images/upload", (req, res) => {
+  console.log("server is connected")
+  console.log(req.query.email)
+  knex('users')
+  .select('id')
+  .where('email', req.query.email)
+  .then((results) => {
+    console.log(results[0].id)
+  let id = results[0].id;
+    res.json({
+      user_id: id
+    });
+
+  });
+});
+
+app.post('/api/images/upload/:id',  (req,res) => {
+  var upload = multer({ dest: './public/images/users/' + req.params.id});
+  upload.single('img')(req,res,function(){})
+  console.log("SERVER CONNECTED")
+  console.log(upload, "upload")
+  console.log(req.body)
+  res.status(201).end()
+ //  knex('photos')
+ //  .insert({
+ //    'user_id': req.params.id,
+ //    'file_path': file_path})
+ //  .then((results) => {
+ //    console.log(results)
+ // })
+});
+
 
 app.get("/api/login/submit", (req, res) => {
    knex('users')
@@ -124,55 +159,46 @@ app.get("/upload", (req, res) => {
   res.render("upload");
 });
 
-app.get('/api/upload/email', (req, res) => {
-  knex('users')
-    .select('id')
-    .where('email', req.query.email)
-    .then((results) => {
-      res.json(results);
-  });
-});
-
-
-app.post('/api/images', (req, res) => {
-  console.log("SERVER CONNECTED")
-  var file_path = __dirname + '/public/images/users/2' + req.file.filename;
-  knex('photos')
-    .insert({
-      'user_id': req.body.name,
-      'file_path': file_path})
-    .returning("id")
-    .then((results) => {
-      res.json(results);
-  });
-
 
 // File input field name is simply 'file'
-// app.post('/api/images/upload', upload.single('imgBLAH'), (req, res) => {
-//   debugger;
+// app.post('/api/images/upload', upload.single('img'), function(req, res) {
 //   console.log("SERVER CONNECTED")
-//   console.log("req.file.path", req.file)
-//   var file_path = __dirname + '/public/images/users/{id}' + req.file.filename;
-//   knex('photos')
-//     .insert({
-//       'user_id': req.body.name,
-//       'file_path': file_path})
-//     .returning("id")
-//     .then((results) => {
-//       res.json(results);
-//   });
-  // console.log(req)
-  // var img = __dirname + '/public/images/users/:id' + req.file.filename;
-  // console.log(img)
-  // fs.rename(req.img.path, img, function(err) {
-  //   if (err) {
-  //     console.log(err);
-  //     res.send(500);
-  //   } else {
-  //     res.json({
-  //       message: 'File uploaded successfully',
-  //       imgname: req.file.originalName
-  //     });
-  //   }
-  // });
-});
+//   // console.log("name")
+//   // var img = __dirname + '/public/images/users/:id' + req.file.filename;
+//   // console.log(img)
+//   // fs.rename(req.img.path, img, function(err) {
+//   //   if (err) {
+//   //     console.log(err);
+//   //     res.send(500);
+//   //   } else {
+//   //     res.json({
+//   //       message: 'File uploaded successfully',
+//   //       imgname: req.file.originalName
+//   //     });
+//   //   }
+//   // });
+// });
+
+
+// app.get("/ping", (req, res) => {
+//   io.emit("news", "Cool beans");
+//   res.end('OK');
+// });
+
+// app.get("/list", (req, res) => {
+//   res.end(JSON.stringify(Object.keys(io.sockets.sockets)));
+// });
+
+
+
+// io.on('connection', (client) => {
+
+//   console.log(`Client ${client.id} has connected`);
+//   client.emit('news', "Hello")
+//   // client.on('media-capabilities', (data) => {
+
+//   // })
+
+//   // client.on('video-start', (cb) => ...)
+// });
+

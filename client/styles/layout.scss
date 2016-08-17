@@ -17,6 +17,27 @@ body .center {
   width: 100%;
 }
 
+body .dropzone-style {
+    width: 500px;
+    height: 200px;
+    border-color: #666;
+    border-style: dashed;
+    border-radius: 5px;
+    margin-top: 40vh;
+    margin-left: 50%;
+    transform: translate(-50%, -50%)
+
+}
+
+body .dropzone-text {
+  margin-left: 50%;
+  margin-top: 15vh;
+  transform: translate(-50%, -50%);
+  font-family: "Lato", san-serif;
+  font-size: 1.5em;
+
+}
+
 body  .input {
   margin-top: 30%;
   width: 30%;
