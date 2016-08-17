@@ -26,9 +26,6 @@ server.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
 
-
-
-
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -129,22 +126,30 @@ app.get("/api/images/upload", (req, res) => {
   });
 });
 
-app.post('/api/images/upload/:id',  (req,res) => {
+app.post('/api/images/upload/:id', (req, res) => {
   var upload = multer({ dest: './public/images/users/' + req.params.id});
-  upload.single('img')(req,res,function(){})
-  console.log("SERVER CONNECTED")
-  console.log(upload, "upload")
-  console.log(req.body)
-  res.status(201).end()
- //  knex('photos')
- //  .insert({
- //    'user_id': req.params.id,
- //    'file_path': file_path})
- //  .then((results) => {
- //    console.log(results)
- // })
+  upload.single('img')(req,res,function(){
+    knex('photos')
+    .insert({
+      'user_id': req.params.id,
+      'file_path': '/images/users/' + req.params.id + '/' + req.file.filename})
+    .then((results) => {
+      console.log("results", results)
+      console.log("req.file", req.file)
+    });
+    res.status(200).end();
+  });
 });
 
+app.get('/api/user/:id/images', (req, res) => {
+  knex('photos')
+    .select('file_path')
+    .where('user_id', req.params.id)
+    .then((results) => {
+      console.log("results", results);
+      res.json(results);
+  });
+});
 
 app.get("/api/login/submit", (req, res) => {
    knex('users')
@@ -158,47 +163,3 @@ app.get("/api/login/submit", (req, res) => {
 app.get("/upload", (req, res) => {
   res.render("upload");
 });
-
-
-// File input field name is simply 'file'
-// app.post('/api/images/upload', upload.single('img'), function(req, res) {
-//   console.log("SERVER CONNECTED")
-//   // console.log("name")
-//   // var img = __dirname + '/public/images/users/:id' + req.file.filename;
-//   // console.log(img)
-//   // fs.rename(req.img.path, img, function(err) {
-//   //   if (err) {
-//   //     console.log(err);
-//   //     res.send(500);
-//   //   } else {
-//   //     res.json({
-//   //       message: 'File uploaded successfully',
-//   //       imgname: req.file.originalName
-//   //     });
-//   //   }
-//   // });
-// });
-
-
-// app.get("/ping", (req, res) => {
-//   io.emit("news", "Cool beans");
-//   res.end('OK');
-// });
-
-// app.get("/list", (req, res) => {
-//   res.end(JSON.stringify(Object.keys(io.sockets.sockets)));
-// });
-
-
-
-// io.on('connection', (client) => {
-
-//   console.log(`Client ${client.id} has connected`);
-//   client.emit('news', "Hello")
-//   // client.on('media-capabilities', (data) => {
-
-//   // })
-
-//   // client.on('video-start', (cb) => ...)
-// });
-
