@@ -13,8 +13,19 @@ import SignupEmail from './SignupEmail.jsx';
 import SignupName from './SignupName.jsx';
 import SignupQuestion from './SignupQuestion.jsx';
 import Landing from './LandingPage.jsx';
+import ToggleDisplay from 'react-toggle-display';
 
 const App = React.createClass ({
+  getInitialState: function() {
+        return { showVideo: false };
+    },
+    onClick: function() {
+      if (this.state.showVideo === false) {
+        this.setState({ showVideo: true });
+      } else {
+        this.setState({ showVideo: false });
+      }
+    },
 
   render: function() {
     console.log("Rendering <App/>");
@@ -22,7 +33,13 @@ const App = React.createClass ({
       return (
         <div>
         <Nav/>
-        <VideoPanel/>
+        <input
+          className="button center button-toggle button-primary"
+          onClick={this.onClick} value="Start Video Chat"/>
+
+        <ToggleDisplay show={this.state.showVideo}>
+          <VideoPanel/>
+        </ToggleDisplay>
         <PhotoPanel id={this.props.user.id}/>
         </div>
         );
