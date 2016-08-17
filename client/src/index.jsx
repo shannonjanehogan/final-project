@@ -28,9 +28,12 @@ import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router';
 render((
   <Router history={browserHistory}>
     <Route>
+
   <Route path="/upload" component={ImageEmail}/>
   <Route path="/upload/:id" component={ImageUpload}/>
-  <Route path="/" component={App}/>
+      <Route path="/" component={Gab}>
+        <IndexRoute component={App} />
+
       <Route path="/signup" component={Signup}>
         <IndexRoute component={SignupName} />
         <Route path="/signup" component={SignupName} />

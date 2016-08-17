@@ -38,10 +38,7 @@ var ImageUpload = React.createClass({
                 <button type="button" onClick={this.onOpenClick}>
                     Open Dropzone
                 </button>
->>>>>>> image-download
-            </div>
-          </div>
-        </form>
+
       </div>
     );
   }

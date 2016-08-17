@@ -27,8 +27,6 @@ server.listen(PORT, () => {
 });
 
 
-// Seperated Routes for each Resource
-const usersRoutes = require("./routes/users");
 
 
 app.use(function(req, res, next) {
