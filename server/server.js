@@ -23,8 +23,14 @@ function inspect(o, d) {
   console.log(util.inspect(o, { colors: true, depth: d || 1}));
 }
 
+<<<<<<< HEAD
 
 app.use(cookieParser());
+=======
+server.listen(PORT, () => {
+  console.log("Example app listening on port " + PORT);
+});
+>>>>>>> 5b27586f12fed594fe988d0922dbab9744a52858
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -94,6 +100,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/signup/submit", (req, res) => {
+  console.log(req)
   knex('users')
   .insert({
     'name': req.body.name,
@@ -136,7 +143,7 @@ app.post('/api/images/upload/:id', (req, res) => {
     knex('photos')
     .insert({
       'user_id': req.params.id,
-      'file_path': '../server/public/images/users/' + req.params.id + '/' + req.file.filename})
+      'file_path': '/images/users/' + req.params.id + '/' + req.file.filename})
     .then((results) => {
       console.log("results", results)
       console.log("req.file", req.file)

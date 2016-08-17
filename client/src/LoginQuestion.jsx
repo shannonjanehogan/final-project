@@ -41,6 +41,7 @@ const LoginQuestion = React.createClass ({
         </h2>
         <form name="answerForm">
           <input
+            autoFocus
             name="inputAnswer"
             className="center input"
             type="text"

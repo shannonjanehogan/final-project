@@ -44,6 +44,7 @@ const SignupQuestion = React.createClass ({
               <option value="Name of birth place?">Name of birth place?</option>
             </select>
             <input
+              autoFocus
               name="inputAnswer"
               className="center input"
               type="text"

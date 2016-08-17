@@ -32,6 +32,7 @@
     "jquery": "^3.1.0",
     "node-sass": "3.8.0",
     "nodemon": "^1.9.2",
+    "react-cookie": "^0.4.8",
     "react-dropzone-component": "^1.0.4",
     "react-router-form": "^2.0.0-rc.0",
     "sass-loader": "4.0.0",

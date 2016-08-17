@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
 import Dropzone from 'react-dropzone';
 import Request from 'superagent';
+import Nav from './Nav.jsx';
+
 
 var ImageUpload = React.createClass({
 
@@ -32,7 +34,7 @@ var ImageUpload = React.createClass({
               </button>
         </div>
       );
-}
+  }
 });
 
 export default ImageUpload;

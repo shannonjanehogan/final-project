@@ -1,5 +1,6 @@
 import React from 'react';
 import Nav from './Nav.jsx'
+import cookie from 'react-cookie';
 import {IndexLink} from 'react-router';
 // Naighty!
 import {browserHistory} from 'react-router';

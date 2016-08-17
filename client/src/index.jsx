@@ -23,6 +23,7 @@ import $ from 'jquery';
 // import SignupQuestion from './LoginName.jsx';
 import ImageEmail from './ImageEmail.jsx';
 import ImageUpload from './ImageUpload.jsx';
+import cookie from 'react-cookie';
 import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router';
 
 render((
