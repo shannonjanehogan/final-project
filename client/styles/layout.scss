@@ -115,21 +115,14 @@ body .sidebar-image-gallery {
 
 
 body .new-user,  body .returning-user {
-  margin-top: 70vh;
-  height: 30vh;
+  margin-top: 75vh;
+  height: 25vh;
   display: flex;
   align-items: center;
-  width: 33.33%;
+  width: 50%;
 }
 
 
-body .image-upload {
-  margin-top: 30vh;
-  height: 70vh;
-  float: left;
-  width: 33.33%;
-  background-color: lightgrey;
-}
 
 /*
 body .returning-user {
