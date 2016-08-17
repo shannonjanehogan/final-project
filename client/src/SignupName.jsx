@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
 import Signup from './Signup.jsx';
 import App from './App.jsx';
+import responsiveVoice from './responsivevoice.js';
+import tts from 'text-to-speech-js';
+
 
 const SignupName = React.createClass ({
+
+
 
   validateName: function() {
     var x = document.nameForm.inputName.value;
@@ -23,12 +28,19 @@ const SignupName = React.createClass ({
     }
   },
 
+  explainQuestion: function() {
 
+    console.log("CLICKED")
+    tts.talk("Hello World");
+    responsiveVoice.speak("hello world");
+
+
+  },
 
   render: function() {
     return (
       <div>
-        <h2 className="center questions">Hi! What's your name?</h2>
+        <h2 onClick={this.explainQuestion} className="center questions">Hi! What's your name?</h2>
         <form name="nameForm">
           <input
             name="inputName"
