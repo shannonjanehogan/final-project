@@ -5,6 +5,8 @@ import Dropzone from 'react-dropzone';
 import Request from 'superagent';
 import $ from 'jquery';
 import { browserHistory } from 'react-router'
+import Nav from './Nav.jsx';
+
 
 
 
@@ -56,10 +58,11 @@ var ImageEmail = React.createClass({
     render: function () {
         return (
             <div>
-              <br/><br/>
+              <Nav />
+              <h2 className="center questions">Type in the email you want to send to.</h2>
               <form onSubmit={this.checkEmail} encType="multipart/form-data">
-                <input type="text" name="emailField" onChange={this.handleEmailChange}/> <br />
-                <input type="submit" name="submit" value="Submit" />
+                <input className="center input" type="text" name="emailField" placeholder="Type your email here." onChange={this.handleEmailChange}/> <br />
+                <input className="center button-login-submit button-primary" type="submit" name="submit" value="Submit" />
               </form>
             </div>
         );
