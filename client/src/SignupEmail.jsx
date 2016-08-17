@@ -35,6 +35,7 @@ const SignupEmail = React.createClass ({
         <h2 className="center questions">Hi! What's your email?</h2>
         <form name="emailForm" >
           <input
+            autoFocus
             name="inputEmail"
             className="center input"
             type="email"
