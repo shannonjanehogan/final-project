@@ -93,6 +93,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/signup/submit", (req, res) => {
+  console.log(req)
   knex('users')
   .insert({
     'name': req.body.name,
