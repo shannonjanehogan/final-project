@@ -7,8 +7,11 @@ const Landing = React.createClass ({
   render() {
     console.log("Rendering <Login/>");
     return (
-      <div>
+      <div className="parent-div">
         <nav id="welcome-nav-bar">
+        <Link
+            to="/signup">
+         <img src="http://placehold.it/250x200"/>  </Link>
         <p className="intro"> Welcome to Gab. </p>
       <p className="description"> Remember your favorite grandparent's living room? A place where you instantly felt at
       home - surrounded by pictures and stories of years past. But now you live miles away and you can't go visit on
@@ -29,6 +32,14 @@ const Landing = React.createClass ({
             to="/login">I'm a returning user
           </Link>
     </div>
+
+    <div className="image-upload">
+      <Link className="button button-user  button-primary"
+            to="/upload">Upload an image
+          </Link>
+    </div>
+
+
       </div>
 
     );

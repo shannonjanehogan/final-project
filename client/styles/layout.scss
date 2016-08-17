@@ -6,6 +6,7 @@ body {
   font-family: "Lato", san-serif;
 }
 
+
 body h1 {
   color: #244751;
 }
@@ -15,6 +16,11 @@ body .center {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
+}
+
+body .parent-div {
+  display: flex;
+  justify-content: center;
 }
 
 body  .input {
@@ -49,9 +55,12 @@ body .button-login-submit {
 
 body .button-user {
   font-family: "Lato", san-serif;
-  margin-left: 50%;
-  margin-top: 40px;
-  transform: translate(-50%, -50%);
+
+    margin: 0 auto;
+    display: block;
+    width: auto;
+
+    vertical-align: middle;
 }
 
 body .video-panel {
@@ -105,16 +114,30 @@ body .sidebar-image-gallery {
 }
 
 
-body .new-user {
-  margin-top: 420px;
-  float: left;
-  width: 50%;
+body .new-user,  body .returning-user {
+  margin-top: 70vh;
+  height: 30vh;
+  display: flex;
+  align-items: center;
+  width: 33.33%;
 }
 
+
+body .image-upload {
+  margin-top: 30vh;
+  height: 70vh;
+  float: left;
+  width: 33.33%;
+  background-color: lightgrey;
+}
+
+/*
 body .returning-user {
+  margin-top: 30vh;
+  height: 70vh;
   margin-top: 420px;
   float: left;
-  width: 50%;
+  width: 33.33%;
 }
-
+*/
 

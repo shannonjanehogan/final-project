@@ -28,10 +28,14 @@
 
 #welcome-nav-bar {
   position: absolute;
-  height: 50%;
+  height: 70vh;
   width: 100%;
-  background-color: #9abb90;
+  background-color: #0191C8;
   display:block;
+}
+
+#welcome-nav-bar img{
+  float:right
 }
 
 #welcome-nav-bar .intro {
@@ -42,7 +46,8 @@
   position: absolute;
   top: 20%;
   left: 50%;
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%);
+  margin: 0;
 
 }
 
@@ -56,6 +61,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  margin: 0;
 
 }
 
@@ -67,5 +73,6 @@
   position: absolute;
   top: 80%;
   left: 50%;
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%);
+  margin: 0;
 }
