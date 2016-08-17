@@ -9,7 +9,7 @@ var ImageUpload = React.createClass({
   onDrop: function(files){
     var id = +window.location.pathname.split('/')[2]
       var req = Request.post('http://localhost:8080/api/images/upload/' + id);
-      files.forEach((file)=> {git
+      files.forEach((file)=> {
         req.attach("img", file);
       });
       req.end(function() {
