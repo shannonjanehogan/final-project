@@ -129,22 +129,31 @@ app.get("/api/images/upload", (req, res) => {
   });
 });
 
-app.post('/api/images/upload/:id',  (req,res) => {
+app.post('/api/images/upload/:id',  (req, res) => {
   var upload = multer({ dest: './public/images/users/' + req.params.id});
   upload.single('img')(req,res,function(){})
   console.log("SERVER CONNECTED")
   console.log(upload, "upload")
   console.log(req.body)
   res.status(201).end()
- //  knex('photos')
- //  .insert({
- //    'user_id': req.params.id,
- //    'file_path': file_path})
- //  .then((results) => {
- //    console.log(results)
- // })
+  knex('photos')
+    .insert({
+      'user_id': req.params.id,
+      'file_path': './public/images/users/' + req.params.id})
+    .then((results) => {
+      console.log(results)
+    });
 });
 
+app.get('/api/user/:id/images'), (req, res) => {
+  debugger;
+  knex('photos')
+    .select('file_path')
+    .where('user_id', req.params.id)
+    .then((results) => {
+      res.json(results);
+  });
+};
 
 app.get("/api/login/submit", (req, res) => {
    knex('users')
@@ -178,27 +187,3 @@ app.get("/upload", (req, res) => {
 //   //   }
 //   // });
 // });
-
-
-// app.get("/ping", (req, res) => {
-//   io.emit("news", "Cool beans");
-//   res.end('OK');
-// });
-
-// app.get("/list", (req, res) => {
-//   res.end(JSON.stringify(Object.keys(io.sockets.sockets)));
-// });
-
-
-
-// io.on('connection', (client) => {
-
-//   console.log(`Client ${client.id} has connected`);
-//   client.emit('news', "Hello")
-//   // client.on('media-capabilities', (data) => {
-
-//   // })
-
-//   // client.on('video-start', (cb) => ...)
-// });
-
