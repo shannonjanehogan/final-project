@@ -15,15 +15,31 @@ import SignupQuestion from './SignupQuestion.jsx';
 import Landing from './LandingPage.jsx';
 
 const App = React.createClass ({
-
+  componentDidMount: function() {
+    let self = this;
+    if (self.isMounted()) {
+      if (document.cookie) {
+        function cookieToString(stringifiedCookie) {
+          let idstring = document.cookie.split("=").pop()
+          let id = parseInt(idstring);
+          return id;
+        };
+      }
+    }
+  },
+  cookieToString: (stringifiedCookie) => {
+    let idstring = stringifiedCookie.split("=").pop()
+    let id = parseInt(idstring);
+    return id;
+  },
   render: function() {
     console.log("Rendering <App/>");
-    if (this.props.user) {
+    if (document.cookie) {
       return (
         <div>
         <Nav/>
         <VideoPanel/>
-        <PhotoPanel id={this.props.user.id}/>
+        <PhotoPanel id={this.cookieToString(document.cookie)}/>
         </div>
         );
     } else {

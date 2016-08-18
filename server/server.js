@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express     = require('express');
+const cookieParser= require('cookie-parser');
 const ENV         = process.env.ENV || 'development';
 const PORT        = process.env.PORT || 8080;
 const app         = express();
@@ -22,14 +23,16 @@ function inspect(o, d) {
   console.log(util.inspect(o, { colors: true, depth: d || 1}));
 }
 
-server.listen(PORT, () => {
-  console.log("Example app listening on port " + PORT);
-});
+app.use(cookieParser());
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
+});
+
+server.listen(PORT, () => {
+  console.log("Example app listening on port " + PORT);
 });
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -86,7 +89,7 @@ app.use(knexLogger(knex));
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", {cookie: req.cookies["id"]});
 });
 
 app.post("/api/signup/submit", (req, res) => {
@@ -99,6 +102,8 @@ app.post("/api/signup/submit", (req, res) => {
     'security_answer': req.body.answer})
   .returning("id")
   .then((results) => {
+    let user_id = results[0].id;
+    res.cookie("user_id", user_id);
     res.json(results);
   });
 });
@@ -111,6 +116,7 @@ app.get("/api/login/email", (req, res) => {
     res.json(results);
   });
 });
+
 app.get("/api/images/upload", (req, res) => {
   console.log("server is connected")
   console.log(req.query.email)
@@ -119,7 +125,8 @@ app.get("/api/images/upload", (req, res) => {
   .where('email', req.query.email)
   .then((results) => {
     console.log(results[0].id)
-  let id = results[0].id;
+    let id = results[0].id;
+    res.cookie("id", id);
     res.json({
       user_id: id
     });
@@ -157,10 +164,9 @@ app.get("/api/login/submit", (req, res) => {
     .select('id')
     .where('security_answer', req.query.answer)
     .then((results) => {
+      let id = results[0].id;
+      res.cookie("id", id);
       res.json(results);
     });
 });
 
-app.get("/upload", (req, res) => {
-  res.render("upload");
-});
