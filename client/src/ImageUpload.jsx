@@ -4,6 +4,7 @@ import ReactDOMServer from 'react-dom/server';
 import Dropzone from 'react-dropzone';
 import Request from 'superagent';
 import Nav from './Nav.jsx';
+import {Link} from 'react-router';
 
 
 var ImageUpload = React.createClass({
@@ -23,17 +24,20 @@ var ImageUpload = React.createClass({
     this.refs.dropzone.open();
   },
   render: function () {
-    return (
-      <div>
-          <br/><br/>
-            <Dropzone ref="dropzone" onDrop={this.onDrop}>
-                <div>Try dropping some files here, or click to select files to upload.</div>
-            </Dropzone>
-            <button type="button" onClick={this.onOpenClick}>
-                Select Photos
-            </button>
-      </div>
-    );
+      return (
+        <div>
+          <Link
+            to="/">
+            <Nav/>
+          </Link>
+          <Dropzone ref="dropzone" className="dropzone-style" onDrop={this.onDrop}>
+              <div className="dropzone-text">Try dropping some files here, or click to select files to upload.</div>
+          </Dropzone>
+          <button type="button" className="center button-image-send button-primary">
+              Send Photos to Alice!
+          </button>
+        </div>
+      );
   }
 });
 
