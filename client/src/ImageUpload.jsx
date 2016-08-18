@@ -23,17 +23,17 @@ var ImageUpload = React.createClass({
     this.refs.dropzone.open();
   },
   render: function () {
-      return (
-        <div>
-            <br/><br/>
-              <Dropzone ref="dropzone" onDrop={this.onDrop}>
-                  <div>Try dropping some files here, or click to select files to upload.</div>
-              </Dropzone>
-              <button type="button" onClick={this.onOpenClick}>
-                  Open Dropzone
-              </button>
-        </div>
-      );
+    return (
+      <div>
+          <br/><br/>
+            <Dropzone ref="dropzone" onDrop={this.onDrop}>
+                <div>Try dropping some files here, or click to select files to upload.</div>
+            </Dropzone>
+            <button type="button" onClick={this.onOpenClick}>
+                Select Photos
+            </button>
+      </div>
+    );
   }
 });
 
