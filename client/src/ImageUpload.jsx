@@ -25,11 +25,11 @@ var ImageUpload = React.createClass({
   render: function () {
       return (
         <div>
-            <br/><br/>
-              <Dropzone ref="dropzone" onDrop={this.onDrop}>
-                  <div>Try dropping some files here, or click to select files to upload.</div>
+              <Nav />
+              <Dropzone ref="dropzone" className="dropzone-style" onDrop={this.onDrop}>
+                  <div className="dropzone-text">Try dropping some files here, or click to select files to upload.</div>
               </Dropzone>
-              <button type="button" onClick={this.onOpenClick}>
+              <button type="button" className="center button-image-upload button-primary" onClick={this.onOpenClick}>
                   Open Dropzone
               </button>
         </div>
