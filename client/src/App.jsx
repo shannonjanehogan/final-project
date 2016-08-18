@@ -58,7 +58,7 @@ const App = React.createClass ({
         <div>
           <Nav/>
           <input
-          className="button center button-toggle button-primary"
+          className="button centerV button-toggle button-primary"
           onClick={this.onClick} value="Toggle Video Chat"/>
           {video}
           <PhotoPanel id={this.cookieToString(document.cookie)}/>
