@@ -13,9 +13,13 @@ import SignupEmail from './SignupEmail.jsx';
 import SignupName from './SignupName.jsx';
 import SignupQuestion from './SignupQuestion.jsx';
 import Landing from './LandingPage.jsx';
+import ToggleDisplay from 'react-toggle-display';
 
 const App = React.createClass ({
-  componentDidMount: function() {
+  getInitialState: function() {
+        return { showVideo: false };
+    },
+    componentDidMount: function() {
     let self = this;
     if (self.isMounted()) {
       if (document.cookie) {
@@ -32,14 +36,32 @@ const App = React.createClass ({
     let id = parseInt(idstring);
     return id;
   },
+  onClick: function() {
+      if (this.state.showVideo === false) {
+        this.setState({ showVideo: true });
+      } else {
+        this.setState({ showVideo: false });
+      }
+    },
+
   render: function() {
     console.log("Rendering <App/>");
+
+    if (this.state.showVideo) {
+
+      var video = <ToggleDisplay show={this.state.showVideo}>
+                    <VideoPanel/>
+                  </ToggleDisplay>
+    }
     if (document.cookie) {
       return (
         <div>
-        <Nav/>
-        <VideoPanel/>
-        <PhotoPanel id={this.cookieToString(document.cookie)}/>
+          <Nav/>
+          <input
+          className="button centerV button-toggle button-primary"
+          onClick={this.onClick} value="Toggle Video Chat"/>
+          {video}
+          <PhotoPanel id={this.cookieToString(document.cookie)}/>
         </div>
         );
     } else {

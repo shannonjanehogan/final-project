@@ -12,7 +12,14 @@ body h1 {
 }
 
 body .center {
-  position:absolute;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+body .centerV {
+  position: relative;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -73,6 +80,13 @@ body .button-login-submit {
   font-size: 1.25em;
 }
 
+body .button-toggle {
+  margin-top: 10%;
+  font-family: "Lato", san-serif;
+  width: 25%;
+  font-size: 1.25em;
+}
+
 body .button-user {
   font-family: "Lato", san-serif;
 
@@ -84,11 +98,8 @@ body .button-user {
 }
 
 body .video-panel {
-  margin-top: 100px;
-  float: left;
-  background-color: pink;
   width: 50%;
-
+  margin: 0 auto;
 }
 
 body .video-panel #webcam {
@@ -100,9 +111,8 @@ body .video-panel #webcam {
 }
 
 body .photo-panel {
-  margin-top: 100px;
+  margin: 0 auto;
   background-color: grey;
-  float: left;
   width: 50%;
   height: 100%;
 }
