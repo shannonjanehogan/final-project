@@ -29,18 +29,23 @@ const App = React.createClass ({
 
   render: function() {
     console.log("Rendering <App/>");
+
+    if (this.state.showVideo) {
+
+      var video = <ToggleDisplay show={this.state.showVideo}>
+                    <VideoPanel/>
+                  </ToggleDisplay>
+    }
+
     if (this.props.user) {
       return (
         <div>
-        <Nav/>
-        <input
+          <Nav/>
+          <input
           className="button center button-toggle button-primary"
-          onClick={this.onClick} value="Start Video Chat"/>
-
-        <ToggleDisplay show={this.state.showVideo}>
-          <VideoPanel/>
-        </ToggleDisplay>
-        <PhotoPanel id={this.props.user.id}/>
+          onClick={this.onClick} value="Toggle Video Chat"/>
+          {video}
+          <PhotoPanel id={this.props.user.id}/>
         </div>
         );
     } else {
