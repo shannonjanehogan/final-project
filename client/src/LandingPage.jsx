@@ -11,7 +11,7 @@ const Landing = React.createClass ({
       <div className="parent-div">
         <nav id="welcome-nav-bar">
         <Link to="/upload">
-         <img src="./img/upload.png"/>
+         <img src="./images/upload.png"/>
         </Link>
         <p className="intro"> Welcome to Gab. </p>
       <p className="description"> Remember your favorite grandparent's living room? A place where you instantly felt at
