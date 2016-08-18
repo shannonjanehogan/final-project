@@ -19,7 +19,24 @@ const App = React.createClass ({
   getInitialState: function() {
         return { showVideo: false };
     },
-    onClick: function() {
+    componentDidMount: function() {
+    let self = this;
+    if (self.isMounted()) {
+      if (document.cookie) {
+        function cookieToString(stringifiedCookie) {
+          let idstring = document.cookie.split("=").pop()
+          let id = parseInt(idstring);
+          return id;
+        };
+      }
+    }
+  },
+  cookieToString: (stringifiedCookie) => {
+    let idstring = stringifiedCookie.split("=").pop()
+    let id = parseInt(idstring);
+    return id;
+  },
+  onClick: function() {
       if (this.state.showVideo === false) {
         this.setState({ showVideo: true });
       } else {
@@ -36,8 +53,7 @@ const App = React.createClass ({
                     <VideoPanel/>
                   </ToggleDisplay>
     }
-
-    if (this.props.user) {
+    if (document.cookie) {
       return (
         <div>
           <Nav/>
@@ -45,7 +61,7 @@ const App = React.createClass ({
           className="button center button-toggle button-primary"
           onClick={this.onClick} value="Toggle Video Chat"/>
           {video}
-          <PhotoPanel id={this.props.user.id}/>
+          <PhotoPanel id={this.cookieToString(document.cookie)}/>
         </div>
         );
     } else {
