@@ -89,7 +89,7 @@ app.use(knexLogger(knex));
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index", {user_id: req.cookies["user_id"]});
+  res.render("index", {cookie: req.cookies["id"]});
 });
 
 app.post("/api/signup/submit", (req, res) => {
@@ -170,6 +170,3 @@ app.get("/api/login/submit", (req, res) => {
     });
 });
 
-app.get("/upload", (req, res) => {
-  res.render("upload");
-});
