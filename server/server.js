@@ -126,7 +126,6 @@ app.get("/api/images/upload", (req, res) => {
   .then((results) => {
     console.log(results[0].id)
     let id = results[0].id;
-    res.cookie("id", id);
     res.json({
       user_id: id
     });
